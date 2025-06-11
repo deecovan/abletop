@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=5 format=3 uid="uid://6xevav3qkmfb"]
 
+[ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/Deck.gd" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://b4qy302glm75k" path="res://Assets/Deck.png" id="2_idj7w"]
 
@@ -7,6 +8,13 @@
 size = Vector2(125, 175)
 
 [node name="Main" type="Node2D"]
+
+[node name="CardManager" type="Node2D" parent="."]
+
+[node name="CardSlot" type="Node2D" parent="."]
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("1_kln2b")
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(100, 570)
@@ -21,14 +29,11 @@ texture = ExtResource("2_idj7w")
 shape = SubResource("RectangleShape2D_kln2b")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Deck"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_right = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
