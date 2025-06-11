@@ -1,5 +1,5 @@
 # abletop GitHub repo 
 
-## 25-6-11 1010
-- Start guide
-	- Try to start reversed from 6th-7th video
+## 25-6-11 1010 Start guide
+- Try to start reversed from 6th-7th video
+- Create Deck assets and scripts
