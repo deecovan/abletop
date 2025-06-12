@@ -42,7 +42,7 @@ func finish_drag() -> void:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_being_dragged = null
 	
-func connect_card_signals() -> void:
+func connect_card_signals(card) -> void:
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
 		
