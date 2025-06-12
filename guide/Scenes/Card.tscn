@@ -1,13 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://c25acld8w4g5r"]
 
 [ext_resource type="Script" uid="uid://ni6riw8ovdab" path="res://Scripts/Card.gd" id="1_pnb5n"]
-[ext_resource type="Texture2D" uid="uid://b4qy302glm75k" path="res://Assets/Deck.png" id="2_3p273"]
+[ext_resource type="Texture2D" uid="uid://cw60aqrxacrcc" path="res://Assets/Archer.png" id="2_3p273"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3p273"]
 size = Vector2(128, 176)
 
 [node name="Card" type="Node2D"]
-position = Vector2(100, 335)
 script = ExtResource("1_pnb5n")
 
 [node name="CardImage" type="Sprite2D" parent="."]
@@ -16,9 +15,9 @@ scale = Vector2(1.018, 1)
 texture = ExtResource("2_3p273")
 
 [node name="Area2D" type="Area2D" parent="."]
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_3p273")
 
 [node name="Attack" type="RichTextLabel" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4qy302glm75k"
-path="res://.godot/imported/Deck.png-cb3d1c592304fc1ee94cbc1c8488aff0.ctex"
+uid="uid://cw60aqrxacrcc"
+path="res://.godot/imported/Archer.png-392e12f4aa9d950c6eff53920bd52421.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Deck.png"
-dest_files=["res://.godot/imported/Deck.png-cb3d1c592304fc1ee94cbc1c8488aff0.ctex"]
+source_file="res://Assets/Archer.png"
+dest_files=["res://.godot/imported/Archer.png-392e12f4aa9d950c6eff53920bd52421.ctex"]
 
 [params]
 

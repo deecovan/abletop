@@ -12,8 +12,9 @@ func _ready() -> void:
 	
 func draw_card() -> void:
 	player_deck.shuffle()
-	var card_drawn = player_deck[0]
-	player_deck.erase(card_drawn)
+	var card_drawn_name = player_deck[0]
+	player_deck.erase(card_drawn_name)
+	
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$Sprite2D.visible = false
@@ -22,7 +23,8 @@ func draw_card() -> void:
 	$RichTextLabel.text = str(player_deck.size())
 	var new_card = card_scene.instantiate()
 	new_card.name = "Card"
-	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn][0])
-	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn][1])
+	new_card.get_node("CardImage").texture = load("res://Assets/" + card_drawn_name + ".png")
+	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
+	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
