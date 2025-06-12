@@ -2,6 +2,7 @@ extends Node2D
 
 const HAND_COUNT = 2
 const CARD_WIDTH = 150
+const HAND_X_POSITION = 250
 const HAND_Y_POSITION = 575
 const DEFAULT_CARD_MOVE_SPEED = 0.2
 
@@ -21,7 +22,7 @@ func add_card_to_hand(card, speed) -> void:
 
 func update_hand_positions(speed) -> void:
 	for i in range(player_hand.size()):
-		var new_position = Vector2(calculate_card_position(i), HAND_Y_POSITION)
+		var new_position = Vector2(HAND_X_POSITION + calculate_card_position(i), HAND_Y_POSITION)
 		var card = player_hand[i]
 		card.starting_position = new_position
 		animate_card_to_position(card, new_position, speed)
@@ -33,7 +34,6 @@ func calculate_card_position(index) -> float:
 	
 func animate_card_to_position(card, new_position, speed) -> void:
 	var tween = get_tree().create_tween()
-	print(new_position)
 	tween.tween_property(card, "position", new_position, speed)
 	
 func remove_card_from_hand(card) -> void:

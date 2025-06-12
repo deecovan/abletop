@@ -19,7 +19,7 @@ script = ExtResource("1_rgh2o")
 script = ExtResource("1_kln2b")
 
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(100, 575)
+position = Vector2(100, 570)
 script = ExtResource("1_r150o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
