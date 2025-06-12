@@ -2,7 +2,9 @@
 
 ## 25-6-11 1025 Continue guide
 - Add Cards Assets and loader
-- !!!Add previous Hand code and continue 06:38
+- Add CardManager script
+- Start add Input Manager script 
+- continue 06:38
 
 
 ## 25-6-11 1010 Start guide
