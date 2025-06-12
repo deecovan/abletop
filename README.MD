@@ -3,8 +3,8 @@
 ## 25-6-11 1025 Continue guide
 - Add Cards Assets and loader
 - Add CardManager script
-- Start add Input Manager script 
-- continue 06:38
+- Continue add Input Manager script 03:40 Video#5
+- Continue 06:38 Unique video#6
 
 
 ## 25-6-11 1010 Start guide
