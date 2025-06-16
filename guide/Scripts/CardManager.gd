@@ -6,9 +6,9 @@ const COLLISION_MASK_SLOT = 2
 const CARD_WIDTH = 150
 const HAND_X_POSITION = 250
 const HAND_Y_POSITION = 575
-const DEFAULT_CARD_MOVE_SPEED = 0.2
-
 const DEFAULT_CARD_ZOOM_SPEED = 0.1
+const DEFAULT_CARD_MOVE_SPEED = 0.2
+const DEFAULT_CARD_PICK_SPEED = 0.4
 
 var screen_size
 var card_being_dragged
@@ -23,8 +23,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if card_being_dragged:
 		var mouse_pos = get_global_mouse_position()
-		card_being_dragged.position = Vector2(clamp(mouse_pos.x, 0, screen_size.x),
-			clamp(mouse_pos.y, 0, screen_size.y))
+		card_being_dragged.position = Vector2(
+			lerp(card_being_dragged.position.x, clamp(mouse_pos.x, 0, screen_size.x), DEFAULT_CARD_PICK_SPEED),
+			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
 func start_drag(card) -> void:
 	card_being_dragged = card

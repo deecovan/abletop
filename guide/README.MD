@@ -7,7 +7,8 @@
 - Add CardSlot and script 05:46 Video#3
 - Add Animation 07:14 Unique Video#6
 - Add TableSpace background texture
-
+- Add Add Lerp DEFAULT_CARD_PICK_SPEED
+- Continue Video#7
 
 ## 25-6-16 0516 Continue guide
 - Add InputManager script 03:40 Deck Video#5
