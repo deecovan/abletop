@@ -6,10 +6,13 @@ signal hovered_off
 var starting_position
 
 func _ready() -> void:
-	pass
+	get_parent().connect_card_signals(self)
 
-func _on_hovered() -> void:
+
+func _on_area_2d_mouse_entered() -> void:
 	emit_signal("hovered", self)
 
-func _on_hovered_off() -> void:
+
+
+func _on_area_2d_mouse_exited() -> void:
 	emit_signal("hovered_off", self)

@@ -43,7 +43,6 @@ func finish_drag() -> void:
 	card_being_dragged.z_index -= 1
 	card_being_dragged = null
 	
-# @UNUSED!!!
 func connect_card_signals(card) -> void:
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
@@ -52,16 +51,12 @@ func on_left_click_released() -> void:
 	if card_being_dragged:
 		finish_drag()
 
-# @UNUSED!!!
 func on_hovered_over_card(card) -> void:
-	print("on_hovered_over_card(card)")
 	if !is_hovering_on_card:
 		is_hovering_on_card =  true
 		highlight_card(card, true)
 
-# @UNUSED!!!
 func on_hovered_off_card(card) -> void:
-	print("on_hovered_off_card(card)")
 	if !card_being_dragged:
 		highlight_card(card, false)
 		var new_card_hovered = raycast_check_for_card()
@@ -101,11 +96,11 @@ func raycast_check_for_card() -> Node2D:
 	return null
 	
 func get_card_with_highest_z_index(cards) -> Node2D:
-	var highest_z_card = cards[0].get_parent()
+	var highest_z_card = cards[0].collider.get_parent()
 	var highest_z_index = highest_z_card.z_index
 	
 	for i in range(1, cards.size()):
-		var current_card = cards[1].get_parent()
+		var current_card = cards[i].collider.get_parent()
 		if current_card.z_index > highest_z_index:
 			highest_z_index = current_card.z_index
 			highest_z_card = current_card
