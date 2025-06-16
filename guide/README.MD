@@ -5,7 +5,8 @@
 	- Fixed errors in CardManager script
 	- Fixed errors in signals
 - Add CardSlot and script 05:46 Video#3
-- Continue Animation 07:14 Unique Video#6
+- Add Animation 07:14 Unique Video#6
+- Add TableSpace background texture
 
 
 ## 25-6-16 0516 Continue guide

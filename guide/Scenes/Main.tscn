@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=11 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/Deck.gd" id="1_r150o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c6f1vdxqh8xpl" path="res://Scripts/InputManager.gd" id="4_v1gob"]
 [ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
 [ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="7_jw32o"]
+[ext_resource type="PackedScene" uid="uid://di6d3jvract06" path="res://Scenes/TableSpace.tscn" id="9_vy5pj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kln2b"]
 size = Vector2(125, 175)
@@ -61,3 +62,5 @@ offset_bottom = 20.0
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TableSpace" parent="." instance=ExtResource("9_vy5pj")]

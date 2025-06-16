@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://di6d3jvract06"]
+
+[ext_resource type="Texture2D" uid="uid://78k5n5ra86dx" path="res://Assets/Table.png" id="1_e4qkb"]
+
+[node name="TableSpace" type="Node2D"]
+z_index = -100
+
+[node name="TableBG" type="Sprite2D" parent="."]
+position = Vector2(368, 120)
+texture = ExtResource("1_e4qkb")
+
+[node name="TableBG2" type="Sprite2D" parent="."]
+position = Vector2(368, 372)
+texture = ExtResource("1_e4qkb")
+
+[node name="TableBG3" type="Sprite2D" parent="."]
+position = Vector2(1121, 120)
+texture = ExtResource("1_e4qkb")
+
+[node name="TableBG4" type="Sprite2D" parent="."]
+position = Vector2(1121, 372)
+texture = ExtResource("1_e4qkb")
+
+[node name="TableBG5" type="Sprite2D" parent="."]
+position = Vector2(368, 624)
+texture = ExtResource("1_e4qkb")
+
+[node name="TableBG6" type="Sprite2D" parent="."]
+position = Vector2(1121, 624)
+texture = ExtResource("1_e4qkb")
