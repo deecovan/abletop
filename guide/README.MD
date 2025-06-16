@@ -1,6 +1,6 @@
 # abletop GitHub repo 
 
-## 25-6-16 v0.6.0 Video#6 complete
+## 25-6-16 tag v0.6.0 Video#6 complete
 - Video#6 complete
 - Added Table and Card Animation juices only
 
