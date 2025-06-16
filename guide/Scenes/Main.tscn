@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=10 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/Deck.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://bs5wm32y50dsw" path="res://Scripts/Main.gd" id="1_rgh2o"]
-[ext_resource type="Texture2D" uid="uid://b4qy302glm75k" path="res://Assets/Deck.png" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://boxioec5tyhi1" path="res://Scripts/CardManager.gd" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://dnswr7vkdvd4m" path="res://Scenes/CardSlot.tscn" id="3_50glp"]
 [ext_resource type="Script" uid="uid://c6f1vdxqh8xpl" path="res://Scripts/InputManager.gd" id="4_v1gob"]
+[ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="7_jw32o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kln2b"]
 size = Vector2(125, 175)
@@ -16,7 +18,17 @@ script = ExtResource("1_rgh2o")
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("2_pbw6q")
 
-[node name="CardSlot" type="Node2D" parent="."]
+[node name="CardSlot" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(400, 350)
+script = ExtResource("4_vy5pj")
+
+[node name="CardSlot2" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(540, 350)
+script = ExtResource("4_vy5pj")
+
+[node name="CardSlot3" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(683, 350)
+script = ExtResource("4_vy5pj")
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("1_kln2b")
@@ -29,7 +41,7 @@ position = Vector2(100, 575)
 script = ExtResource("1_r150o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
-texture = ExtResource("2_idj7w")
+texture = ExtResource("7_jw32o")
 
 [node name="Area2D" type="Area2D" parent="Deck"]
 light_mask = 4

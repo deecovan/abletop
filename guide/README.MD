@@ -4,9 +4,9 @@
 - Some errors found - read the comments
 	- Fixed errors in CardManager script
 	- Fixed errors in signals
-- Start Add CardSlot and script ??:?? Video#3
+- Add CardSlot and script 05:46 Video#3
 - Next:
-	- than Continue 06:38 Unique Video#6
+	- Continue 06:38 Unique Video#6
 
 
 ## 25-6-16 0516 Continue guide
