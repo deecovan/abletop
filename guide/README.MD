@@ -1,5 +1,9 @@
 # abletop GitHub repo 
 
+## 25-6-16 v0.6.0 Video#6 complete
+- Video#6 complete
+- Added Table and Card Animation juices only
+
 ## 25-6-16 0651 PlayerHand and Deck working
 - Some errors found - read the comments
 	- Fixed errors in CardManager script
@@ -8,7 +12,8 @@
 - Add Animation 07:14 Unique Video#6
 - Add TableSpace background texture
 - Add Add Lerp DEFAULT_CARD_PICK_SPEED
-- Continue Video#7
+- ... Rename Daemon to Mage
+- ... Continue Video#7
 
 ## 25-6-16 0516 Continue guide
 - Add InputManager script 03:40 Deck Video#5
