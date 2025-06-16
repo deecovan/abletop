@@ -5,8 +5,7 @@
 	- Fixed errors in CardManager script
 	- Fixed errors in signals
 - Add CardSlot and script 05:46 Video#3
-- Next:
-	- Continue 06:38 Unique Video#6
+- Continue Animation 07:14 Unique Video#6
 
 
 ## 25-6-16 0516 Continue guide
@@ -21,5 +20,4 @@
 - Try to start reversed from 6th-7th video
 - Create Deck assets and scripts
 - Create proto Card and try to draw one random
-- !!!Need to start Draw-a-card parts Continue 04:40 Unique video
-- Continue 04:40 Unique video
+- Add Draw-a-card parts 04:40 Unique video#6
