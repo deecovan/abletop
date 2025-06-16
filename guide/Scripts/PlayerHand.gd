@@ -17,9 +17,7 @@ func add_card_to_hand(card) -> void:
 		player_hand.insert(0, card)
 		update_hand_positions(DEFAULT_CARD_MOVE_SPEED)
 	else:
-		# @ERROR!!! card.starting_position not a propery or key
-		# Need to set it in "start_drag"
-		# animate_card_to_position(card, card.starting_position, DEFAULT_CARD_MOVE_SPEED)
+		animate_card_to_position(card, card.starting_position, DEFAULT_CARD_MOVE_SPEED)
 		pass
 
 func update_hand_positions(speed) -> void:

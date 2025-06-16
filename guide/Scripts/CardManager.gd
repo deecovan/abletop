@@ -26,7 +26,9 @@ func _process(_delta: float) -> void:
 			
 func start_drag(card) -> void:
 	card_being_dragged = card
+	card.starting_position = card.position
 	card.scale = Vector2(1.1,1.1)
+	card.z_index += 1
 	
 func finish_drag() -> void:
 	card_being_dragged.scale = Vector2(1,1)
@@ -38,6 +40,7 @@ func finish_drag() -> void:
 		card_slot_found.card_in_slot = true
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged)
+	card_being_dragged.z_index -= 1
 	card_being_dragged = null
 	
 # @UNUSED!!!
