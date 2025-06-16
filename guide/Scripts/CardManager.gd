@@ -26,11 +26,10 @@ func _process(_delta: float) -> void:
 			
 func start_drag(card) -> void:
 	card_being_dragged = card
-	card.scale = Vector2(1,1)
+	card.scale = Vector2(1.1,1.1)
 	
 func finish_drag() -> void:
-	print("finish_drag()")
-	card_being_dragged.scale = Vector2(1.1,1.1)
+	card_being_dragged.scale = Vector2(1,1)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
@@ -38,9 +37,10 @@ func finish_drag() -> void:
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 		card_slot_found.card_in_slot = true
 	else:
-		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+		player_hand_reference.add_card_to_hand(card_being_dragged)
 	card_being_dragged = null
 	
+# @UNUSED!!!
 func connect_card_signals(card) -> void:
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
@@ -48,13 +48,17 @@ func connect_card_signals(card) -> void:
 func on_left_click_released() -> void:
 	if card_being_dragged:
 		finish_drag()
-		
+
+# @UNUSED!!!
 func on_hovered_over_card(card) -> void:
+	print("on_hovered_over_card(card)")
 	if !is_hovering_on_card:
 		is_hovering_on_card =  true
 		highlight_card(card, true)
-		
+
+# @UNUSED!!!
 func on_hovered_off_card(card) -> void:
+	print("on_hovered_off_card(card)")
 	if !card_being_dragged:
 		highlight_card(card, false)
 		var new_card_hovered = raycast_check_for_card()

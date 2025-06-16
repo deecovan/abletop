@@ -10,11 +10,10 @@ var card_database_reference = preload("res://Scripts/CardDatabase.gd")
 var player_deck = ["Knight", "Archer", "Daemon", "Knight"]
 
 func _ready() -> void:
-	draw_card()
+	player_deck.shuffle()
 	$RichTextLabel.text = str(player_deck.size())
 	
 func draw_card() -> void:
-	player_deck.shuffle()
 	var card_drawn_name = player_deck[0]
 	player_deck.erase(card_drawn_name)
 	
@@ -31,4 +30,4 @@ func draw_card() -> void:
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
-	$"../PlayerHand".add_card_to_hand(new_card, DEFAULT_CARD_MOVE_SPEED)
+	$"../PlayerHand".add_card_to_hand(new_card)
