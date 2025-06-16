@@ -1,10 +1,12 @@
 # abletop GitHub repo 
 
+## 25-6-16 0516 Continue guide
+- Continue add InputManager script 03:40 Deck Video#5
+- than Continue 06:38 Unique Video#6
+
 ## 25-6-11 1025 Continue guide
 - Add Cards Assets and loader
 - Add CardManager script
-- Continue add Input Manager script 03:40 Deck Video#5
-- Continue 06:38 Unique Video#6
 
 
 ## 25-6-11 1010 Start guide
