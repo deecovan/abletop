@@ -2,8 +2,10 @@
 
 ## 25-6-16 0651 PlayerHand and Deck working
 - Some errors found - read the comments
+	- Fixed errors in CardManager script
+	- Fixed errors in signals
+- Start Add CardSlot and script ??:?? Video#3
 - Next:
-	- Add CardSlot and script ??:?? Video#3
 	- than Continue 06:38 Unique Video#6
 
 
