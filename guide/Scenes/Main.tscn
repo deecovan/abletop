@@ -19,15 +19,15 @@ script = ExtResource("1_rgh2o")
 script = ExtResource("2_pbw6q")
 
 [node name="CardSlot" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(400, 350)
+position = Vector2(100, 350)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot2" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(540, 350)
+position = Vector2(250, 350)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot3" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(683, 350)
+position = Vector2(400, 350)
 script = ExtResource("4_vy5pj")
 
 [node name="PlayerHand" type="Node2D" parent="."]
