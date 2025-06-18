@@ -5,8 +5,10 @@
 - Change Slots/Deck positions
 - Change Slots/Deck/Cards Sizes
 - Add Zoom values constants
-- ... Rename Daemon to Mage
-- ... Continue Video#7
+- Rename Daemon to Mage
+- Continue Video#7
+	- Watch Video#7 Video#8 ToTheEnd!!!
+	- Reverse Coding
 
 ## 25-6-16 tag v0.6.0 Video#6 complete
 - Video#6 complete
