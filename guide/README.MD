@@ -1,6 +1,8 @@
 # abletop GitHub repo 
 
 ## 25-6-18 Oppo and OppoAI #7#8
+- Viewport 1280x720 1x1
+- Change Slots/Deck positions
 - ... Rename Daemon to Mage
 - ... Continue Video#7
 

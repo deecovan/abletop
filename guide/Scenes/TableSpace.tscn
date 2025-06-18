@@ -4,27 +4,28 @@
 
 [node name="TableSpace" type="Node2D"]
 z_index = -100
+scale = Vector2(1.5, 1.5)
 
 [node name="TableBG" type="Sprite2D" parent="."]
-position = Vector2(368, 120)
+position = Vector2(376, 126)
 texture = ExtResource("1_e4qkb")
 
 [node name="TableBG2" type="Sprite2D" parent="."]
-position = Vector2(368, 372)
+position = Vector2(376, 377)
 texture = ExtResource("1_e4qkb")
 
 [node name="TableBG3" type="Sprite2D" parent="."]
-position = Vector2(1121, 120)
+position = Vector2(376, 629)
 texture = ExtResource("1_e4qkb")
 
 [node name="TableBG4" type="Sprite2D" parent="."]
-position = Vector2(1121, 372)
+position = Vector2(1129.33, 126)
 texture = ExtResource("1_e4qkb")
 
 [node name="TableBG5" type="Sprite2D" parent="."]
-position = Vector2(368, 624)
+position = Vector2(1129.33, 377)
 texture = ExtResource("1_e4qkb")
 
 [node name="TableBG6" type="Sprite2D" parent="."]
-position = Vector2(1121, 624)
+position = Vector2(1129.33, 629)
 texture = ExtResource("1_e4qkb")

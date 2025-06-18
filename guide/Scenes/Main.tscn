@@ -19,26 +19,26 @@ script = ExtResource("1_rgh2o")
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("2_pbw6q")
 
-[node name="CardSlot" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(100, 350)
-script = ExtResource("4_vy5pj")
-
-[node name="CardSlot2" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(250, 350)
-script = ExtResource("4_vy5pj")
-
-[node name="CardSlot3" parent="." instance=ExtResource("3_50glp")]
-position = Vector2(400, 350)
-script = ExtResource("4_vy5pj")
-
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("1_kln2b")
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("4_v1gob")
 
+[node name="CardSlot" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(80, 400)
+script = ExtResource("4_vy5pj")
+
+[node name="CardSlot2" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(230, 400)
+script = ExtResource("4_vy5pj")
+
+[node name="CardSlot3" parent="." instance=ExtResource("3_50glp")]
+position = Vector2(380, 400)
+script = ExtResource("4_vy5pj")
+
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(100, 575)
+position = Vector2(80, 600)
 script = ExtResource("1_r150o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
@@ -64,3 +64,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TableSpace" parent="." instance=ExtResource("9_vy5pj")]
+scale = Vector2(1, 1)
