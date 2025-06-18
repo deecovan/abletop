@@ -3,6 +3,8 @@
 ## 25-6-18 Oppo and OppoAI #7#8
 - Viewport 1280x720 1x1
 - Change Slots/Deck positions
+- Change Slots/Deck/Cards Sizes
+- Add Zoom values constants
 - ... Rename Daemon to Mage
 - ... Continue Video#7
 

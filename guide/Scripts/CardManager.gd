@@ -7,6 +7,9 @@ const DEFAULT_CARD_ZOOM_SPEED = 0.1
 const DEFAULT_CARD_MOVE_SPEED = 0.2
 const DEFAULT_CARD_PICK_SPEED = 0.4
 
+const ZOOM_NORMAL = Vector2(0.5,0.5)
+const ZOOM_IN = Vector2(0.55,0.55)
+
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
@@ -28,12 +31,12 @@ func start_drag(card) -> void:
 	card_being_dragged = card
 	card.starting_position = card.position
 	var tween = get_tree().create_tween()
-	tween.tween_property(card, "scale", Vector2(1.1,1.1), DEFAULT_CARD_ZOOM_SPEED)
+	tween.tween_property(card, "scale", ZOOM_IN, DEFAULT_CARD_ZOOM_SPEED)
 	card.z_index += 1
 	
 func finish_drag() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(card_being_dragged, "scale", Vector2(1,1), DEFAULT_CARD_ZOOM_SPEED)
+	tween.tween_property(card_being_dragged, "scale", ZOOM_NORMAL, DEFAULT_CARD_ZOOM_SPEED)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
@@ -70,11 +73,11 @@ func on_hovered_off_card(card) -> void:
 func highlight_card(card, hovered) -> void:
 	if hovered:
 		var tween = get_tree().create_tween()
-		tween.tween_property(card, "scale", Vector2(1.1,1.1), DEFAULT_CARD_ZOOM_SPEED)
+		tween.tween_property(card, "scale", ZOOM_IN, DEFAULT_CARD_ZOOM_SPEED)
 		card.z_index = 2
 	else:
 		var tween = get_tree().create_tween()
-		tween.tween_property(card, "scale", Vector2(1,1), DEFAULT_CARD_ZOOM_SPEED)
+		tween.tween_property(card, "scale", ZOOM_NORMAL, DEFAULT_CARD_ZOOM_SPEED)
 		card.z_index = 1
 	
 func raycast_check_for_card_slot() -> Node2D:

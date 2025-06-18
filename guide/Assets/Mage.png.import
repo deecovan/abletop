@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccapoluvo4gbx"
-path="res://.godot/imported/Daemon.png-3d95737861c957a479f90c0a5ce2ecc5.ctex"
+path="res://.godot/imported/Mage.png-7cca242f00bbea02264bf99c1028b7d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Daemon.png"
-dest_files=["res://.godot/imported/Daemon.png-3d95737861c957a479f90c0a5ce2ecc5.ctex"]
+source_file="res://Assets/Mage.png"
+dest_files=["res://.godot/imported/Mage.png-7cca242f00bbea02264bf99c1028b7d0.ctex"]
 
 [params]
 

@@ -1,14 +1,8 @@
 extends Node2D
 
-const CARD_WIDTH = 150
-const HAND_X_POSITION = 250
-const HAND_Y_POSITION = 575
-const DEFAULT_CARD_MOVE_SPEED = 0.2
-const DEFAULT_CARD_ZOOM_SPEED = 0.1
-
 var card_scene = preload("res://Scenes/Card.tscn")
 var card_database_reference = preload("res://Scripts/CardDatabase.gd")
-var player_deck = ["Knight", "Archer", "Daemon", "Knight"]
+var player_deck = ["Knight", "Archer", "Mage", "Knight"]
 
 func _ready() -> void:
 	player_deck.shuffle()
