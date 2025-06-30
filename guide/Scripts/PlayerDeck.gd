@@ -2,25 +2,25 @@ extends Node2D
 
 var card_scene = preload("res://Scenes/Card.tscn")
 var card_database_reference = preload("res://Scripts/CardDatabase.gd")
-var opponent_deck = [
+var player_deck = [
 	"Knight", "Archer", "Mage", "Knight",
 	"Knight", "Archer", "Mage", "Knight",
 ]
 
 func _ready() -> void:
-	opponent_deck.shuffle()
-	$RichTextLabel.text = str(opponent_deck.size())
+	player_deck.shuffle()
+	$RichTextLabel.text = str(player_deck.size())
 	
 func draw_card() -> void:
-	var card_drawn_name = opponent_deck[0]
-	opponent_deck.erase(card_drawn_name)
+	var card_drawn_name = player_deck[0]
+	player_deck.erase(card_drawn_name)
 	
-	if opponent_deck.size() == 0:
+	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$Sprite2D.visible = false
 		$RichTextLabel.visible = false
 		
-	$RichTextLabel.text = str(opponent_deck.size())
+	$RichTextLabel.text = str(player_deck.size())
 	var new_card = card_scene.instantiate()
 	new_card.name = "Card"
 	new_card.position = Vector2(position.x, position.y)

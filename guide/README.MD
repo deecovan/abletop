@@ -2,6 +2,8 @@
 
 ## 05-6-30
 - Watch Video#7 Video#8 ToTheEnd
+- Continue Video#8 08:20 and Reverse Video#7
+
 
 ## 25-6-18 Oppo and OppoAI #7#8
 - Viewport 1280x720 1x1

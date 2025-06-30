@@ -12,11 +12,12 @@ func _ready() -> void:
 	$RichTextLabel.text = str(opponent_deck.size())
 	
 func draw_card() -> void:
+	if opponent_deck.size() < 1: return
+	
 	var card_drawn_name = opponent_deck[0]
 	opponent_deck.erase(card_drawn_name)
 	
 	if opponent_deck.size() == 0:
-		$Area2D/CollisionShape2D.disabled = true
 		$Sprite2D.visible = false
 		$RichTextLabel.visible = false
 		
@@ -28,5 +29,5 @@ func draw_card() -> void:
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
-	$"../PlayerHand".add_card_to_hand(new_card)
+	$"../OpponentHand".add_card_to_hand(new_card)
 	new_card.get_node("AnimationPlayer").play("Flip")
