@@ -1,28 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d26lfox2cjvj6"]
 
+[ext_resource type="Script" uid="uid://dlpegy46npfp1" path="res://Scripts/OpponentCard.gd" id="1_qrb68"]
 [ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="2_r8ami"]
 [ext_resource type="Texture2D" uid="uid://b4qy302glm75k" path="res://Assets/Deck.png" id="3_0rmfg"]
-
-[sub_resource type="GDScript" id="GDScript_mv32a"]
-script/source = "extends Node2D
-
-signal hovered
-signal hovered_off
-
-var starting_position
-
-func _ready() -> void:
-	get_parent().connect_card_signals(self)
-
-
-func _on_area_2d_mouse_entered() -> void:
-	emit_signal(\"hovered\", self)
-
-
-
-func _on_area_2d_mouse_exited() -> void:
-	emit_signal(\"hovered_off\", self)
-"
 
 [sub_resource type="Animation" id="Animation_3m7nw"]
 resource_name = "Flip"
@@ -181,11 +161,12 @@ _data = {
 &"RESET": SubResource("Animation_h8wm0")
 }
 
-[node name="Card" type="Node2D"]
+[node name="OpponentCard" type="Node2D"]
 scale = Vector2(0.5, 0.5)
-script = SubResource("GDScript_mv32a")
+script = ExtResource("1_qrb68")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
 libraries = {
 &"": SubResource("AnimationLibrary_kphy1")
 }
@@ -196,13 +177,15 @@ z_index = -1
 texture = ExtResource("2_r8ami")
 
 [node name="CardImage" type="Sprite2D" parent="."]
+scale = Vector2(1e-05, 1)
 texture = ExtResource("3_0rmfg")
 
 [node name="Attack" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -19.49
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -20.0
 offset_top = 48.0
-offset_right = 20.51
+offset_right = 20.0
 offset_bottom = 88.0
 text = "0"
 horizontal_alignment = 1
@@ -211,9 +194,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = 24.0
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -20.0
 offset_top = 48.0
-offset_right = 64.0
+offset_right = 20.0
 offset_bottom = 88.0
 text = "0"
 horizontal_alignment = 1

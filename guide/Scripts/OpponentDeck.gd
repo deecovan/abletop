@@ -1,6 +1,6 @@
 extends Node2D
 
-var card_scene = preload("res://Scenes/Card.tscn")
+var card_scene = preload("res://Scenes/OpponentCard.tscn")
 var card_database_reference = preload("res://Scripts/CardDatabase.gd")
 var opponent_deck = [
 	"Knight", "Archer", "Mage", "Knight",
@@ -30,4 +30,3 @@ func draw_card() -> void:
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
 	$"../OpponentHand".add_card_to_hand(new_card)
-	new_card.get_node("AnimationPlayer").play("Flip")

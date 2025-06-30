@@ -2,7 +2,11 @@
 
 ## 05-6-30
 - Watch Video#7 Video#8 ToTheEnd
-- Continue Video#8 08:20 and Reverse Video#7
+- Fix OpponentCardSlots 
+- Fix OpponentHand
+- Continue Video#8 10:10
+- Continue Reverse Video#7 
+	- Initial cards in hands
 
 
 ## 25-6-18 Oppo and OppoAI #7#8
