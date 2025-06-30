@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=15 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bs5wm32y50dsw" path="res://Scripts/Main.gd" id="1_rgh2o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c6f1vdxqh8xpl" path="res://Scripts/InputManager.gd" id="4_v1gob"]
 [ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
 [ext_resource type="Script" uid="uid://fey65rehmgel" path="res://Scripts/OpponentHand.gd" id="5_bmxlf"]
+[ext_resource type="PackedScene" uid="uid://bnbv04hpddmqs" path="res://Scenes/OpponentCardSlot.tscn" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/PlayerDeck.gd" id="6_4kpch"]
 [ext_resource type="Script" uid="uid://0vx74b3rlsn2" path="res://Scripts/OpponentDeck.gd" id="6_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="7_jw32o"]
@@ -25,77 +26,78 @@ script = ExtResource("2_pbw6q")
 [node name="CardSlots" type="Node2D" parent="."]
 
 [node name="CardSlot" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(489, 496)
+position = Vector2(488, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot2" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(567, 496)
+position = Vector2(568, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot3" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(645, 496)
+position = Vector2(648, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot4" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(720, 496)
+position = Vector2(728, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot5" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(489, 398)
+position = Vector2(488, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot6" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(567, 398)
+position = Vector2(568, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot7" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(645, 398)
+position = Vector2(648, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot8" parent="CardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(720, 398)
+position = Vector2(728, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="OpponentCardSlots" type="Node2D" parent="."]
+position = Vector2(480, 232)
 
-[node name="CardSlot" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(489, 192)
+[node name="CardSlot" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(8, 64)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot2" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(567, 192)
+[node name="CardSlot2" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(88, 64)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot3" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(645, 192)
+[node name="CardSlot3" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(168, 64)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot4" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(720, 192)
+[node name="CardSlot4" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(248, 64)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot5" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(489, 287)
+[node name="CardSlot5" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(8, -32)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot6" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(567, 287)
+[node name="CardSlot6" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(88, -32)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot7" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(645, 287)
+[node name="CardSlot7" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(168, -32)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardSlot8" parent="OpponentCardSlots" instance=ExtResource("3_50glp")]
-position = Vector2(720, 287)
+[node name="CardSlot8" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+position = Vector2(248, -32)
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerHand" type="Node2D" parent="."]
