@@ -1,5 +1,8 @@
 # abletop GitHub repo 
 
+## 05-6-30
+- Watch Video#7 Video#8 ToTheEnd
+
 ## 25-6-18 Oppo and OppoAI #7#8
 - Viewport 1280x720 1x1
 - Change Slots/Deck positions
