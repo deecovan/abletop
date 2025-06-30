@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=12 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/Deck.gd" id="1_r150o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
 [ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="7_jw32o"]
 [ext_resource type="PackedScene" uid="uid://di6d3jvract06" path="res://Scenes/TableSpace.tscn" id="9_vy5pj"]
+[ext_resource type="Script" uid="uid://34xpt4dy128o" path="res://Scripts/BattleManager.gd" id="10_bmxlf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kln2b"]
 size = Vector2(125, 175)
@@ -19,51 +20,50 @@ script = ExtResource("1_rgh2o")
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("2_pbw6q")
 
-[node name="PlayerHand" type="Node2D" parent="."]
-script = ExtResource("1_kln2b")
+[node name="CardSlots" type="Node2D" parent="."]
 
-[node name="InputManager" type="Node2D" parent="."]
-script = ExtResource("4_v1gob")
-
-[node name="CardSlot" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(80, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot2" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot2" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(158, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot3" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot3" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(236, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot4" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot4" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(311, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot5" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot5" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(388, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot6" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot6" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(466, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot7" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot7" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(544, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
-[node name="CardSlot8" parent="." instance=ExtResource("3_50glp")]
+[node name="CardSlot8" parent="CardSlots" instance=ExtResource("3_50glp")]
 position = Vector2(619, 498)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("1_kln2b")
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(80, 600)
@@ -92,5 +92,27 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="OpponentDeck" type="Node2D" parent="."]
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("4_v1gob")
+
 [node name="TableSpace" parent="." instance=ExtResource("9_vy5pj")]
+visible = false
 scale = Vector2(1, 1)
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("10_bmxlf")
+
+[node name="EndTurnButton" type="Button" parent="BattleManager"]
+offset_left = 664.0
+offset_top = 608.0
+offset_right = 742.0
+offset_bottom = 639.0
+text = "End Turn
+"
+
+[node name="BattleTimer" type="Timer" parent="BattleManager"]
+one_shot = true
+
+[connection signal="pressed" from="BattleManager/EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]

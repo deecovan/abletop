@@ -1,0 +1,15 @@
+extends Node
+
+var battle_timer
+
+
+func _on_end_turn_button_pressed() -> void:
+	opponent_turn()
+
+
+func opponent_turn() -> void:
+	$EndTurnButton.disabled = true
+	$EndTurnButton.visible = false
+	$"../OpponentDeck".draw_card()
+	$BattleTimer.start()
+	await $BattleTimer.timeout
