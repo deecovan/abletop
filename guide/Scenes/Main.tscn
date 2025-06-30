@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
-[ext_resource type="Script" uid="uid://bn5h2ro08fxu" path="res://Scripts/Deck.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://bs5wm32y50dsw" path="res://Scripts/Main.gd" id="1_rgh2o"]
 [ext_resource type="Script" uid="uid://boxioec5tyhi1" path="res://Scripts/CardManager.gd" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dnswr7vkdvd4m" path="res://Scenes/CardSlot.tscn" id="3_50glp"]
 [ext_resource type="Script" uid="uid://c6f1vdxqh8xpl" path="res://Scripts/InputManager.gd" id="4_v1gob"]
 [ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
+[ext_resource type="Script" uid="uid://0vx74b3rlsn2" path="res://Scripts/OpponentDeck.gd" id="6_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://brsymimqwaqe4" path="res://Assets/Back.png" id="7_jw32o"]
 [ext_resource type="PackedScene" uid="uid://di6d3jvract06" path="res://Scenes/TableSpace.tscn" id="9_vy5pj"]
 [ext_resource type="Script" uid="uid://34xpt4dy128o" path="res://Scripts/BattleManager.gd" id="10_bmxlf"]
@@ -68,7 +68,7 @@ script = ExtResource("1_kln2b")
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(80, 600)
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_r150o")
+script = ExtResource("6_bmxlf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Deck"]
 texture = ExtResource("7_jw32o")
@@ -93,6 +93,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OpponentDeck" type="Node2D" parent="."]
+script = ExtResource("6_bmxlf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OpponentDeck"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("4_v1gob")
