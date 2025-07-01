@@ -9,7 +9,7 @@ var player_deck = [
 
 func _ready() -> void:
 	player_deck.shuffle()
-	$RichTextLabel.text = str(player_deck.size())
+	$CardsInDeck.text = str(player_deck.size())
 	
 	for i in range($"../BattleManager".STARTING_HAND_SIZE):
 		draw_card()
@@ -21,9 +21,9 @@ func draw_card() -> void:
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$Sprite2D.visible = false
-		$RichTextLabel.visible = false
+		$CardsInDeck.visible = false
 		
-	$RichTextLabel.text = str(player_deck.size())
+	$CardsInDeck.text = str(player_deck.size())
 	var new_card = card_scene.instantiate()
 	new_card.name = "Card"
 	new_card.position = Vector2(position.x, position.y)
@@ -33,3 +33,11 @@ func draw_card() -> void:
 	$"../CardManager".add_child(new_card)
 	$"../PlayerHand".add_card_to_hand(new_card)
 	new_card.get_node("AnimationPlayer").play("Flip")
+
+
+func _on_area_2d_mouse_entered() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+
+func _on_area_2d_mouse_exited() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

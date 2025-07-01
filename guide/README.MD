@@ -24,10 +24,10 @@
       3. Attack with the cards not tapped.
       4. End turn.
          - Untap all cards.
-
 # Log 
 ## 25-7-01
-- Start initial draw
+- Continue 14:15 Opponent Draw a Card
+- Implement initial draw
 
 ## 25-6-30
 - Watch Video#7 Video#8 ToTheEnd
@@ -36,7 +36,6 @@
 - Continue Video#8 10:10
 - Continue Reverse Video#7 
 	- Initial cards in hands
-
 
 ## 25-6-18 Oppo and OppoAI #7#8
 - Viewport 1280x720 1x1
@@ -67,7 +66,6 @@
 ## 25-6-11 1025 Continue guide
 - Add Cards Assets and loader
 - Add CardManager script
-
 
 ## 25-6-11 1010 Start guide
 - Try to start reversed from 6th-7th video
