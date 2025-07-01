@@ -1,6 +1,35 @@
-# abletop GitHub repo 
+# abletop GitHub repo
 
-## 05-6-30
+# Backlog
+## 25-7-01
+- Table schema:
+  - Slots area
+    1. Frontline 4 slots
+    2. Backline 4 slots
+  - Player hand area
+  - Deck area
+  ...
+  - Graveyard area
+  - Action interface
+    - Buttons block
+    - Information/Log area
+- Game sequence
+  - Initial draw 4 cards
+  ...
+  - Turn sequence:
+      0. Turn starts with 2AP.
+      1. Player can draw a card or play a card from the hand. -1AP.
+         - Drawn card are tapped - can not attack, can contr-attack. 
+      2. Repeat 1.
+      3. Attack with the cards not tapped.
+      4. End turn.
+         - Untap all cards.
+
+# Log 
+## 25-7-01
+- Start initial draw
+
+## 25-6-30
 - Watch Video#7 Video#8 ToTheEnd
 - Fix OpponentCardSlots 
 - Fix OpponentHand
