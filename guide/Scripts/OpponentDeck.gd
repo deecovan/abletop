@@ -15,6 +15,7 @@ func _ready() -> void:
 		draw_card()
 	
 func draw_card() -> void:
+	# Safe check deck size
 	if opponent_deck.size() < 1: return
 	
 	var card_drawn_name = opponent_deck[0]
