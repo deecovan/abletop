@@ -25,7 +25,7 @@
       4. End turn.
          - Untap all cards.
 # Log 
-## 25-7-01
+## 25-7-01 tag v0.7.0
 - Continue 14:15 Opponent Draw a Card
 - Implement initial draw
 
