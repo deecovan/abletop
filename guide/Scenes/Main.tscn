@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://6xevav3qkmfb"]
+[gd_scene load_steps=16 format=3 uid="uid://6xevav3qkmfb"]
 
 [ext_resource type="Script" uid="uid://cuvoi8mwc63qd" path="res://Scripts/PlayerHand.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bs5wm32y50dsw" path="res://Scripts/Main.gd" id="1_rgh2o"]
 [ext_resource type="Script" uid="uid://boxioec5tyhi1" path="res://Scripts/CardManager.gd" id="2_pbw6q"]
+[ext_resource type="Theme" uid="uid://bcv2ny2u6crhk" path="res://Themes/Baloo Black/Baloo Black.tres" id="3_1p5hy"]
 [ext_resource type="PackedScene" uid="uid://dnswr7vkdvd4m" path="res://Scenes/CardSlot.tscn" id="3_50glp"]
 [ext_resource type="Script" uid="uid://c6f1vdxqh8xpl" path="res://Scripts/InputManager.gd" id="4_v1gob"]
 [ext_resource type="Script" uid="uid://crl8wgyka01yk" path="res://Scripts/CardSlot.gd" id="4_vy5pj"]
@@ -25,11 +26,15 @@ script = ExtResource("10_bmxlf")
 
 [node name="EndTurnButton" type="Button" parent="BattleManager"]
 offset_left = 32.0
-offset_top = 504.0
-offset_right = 128.0
-offset_bottom = 544.0
+offset_top = 512.0
+offset_right = 224.0
+offset_bottom = 566.0
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
-text = "End Turn
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_1p5hy")
+text = "End Turn 
 "
 
 [node name="BattleTimer" type="Timer" parent="BattleManager"]
