@@ -24,11 +24,10 @@ script = ExtResource("1_rgh2o")
 script = ExtResource("10_bmxlf")
 
 [node name="EndTurnButton" type="Button" parent="BattleManager"]
-offset_left = 32.0
-offset_top = 504.0
-offset_right = 128.0
-offset_bottom = 544.0
-size_flags_horizontal = 4
+offset_left = 40.0
+offset_top = 328.0
+offset_right = 118.0
+offset_bottom = 359.0
 text = "End Turn
 "
 

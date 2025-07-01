@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_height=688
 window/size/initial_position_type=0
 window/size/resizable=false
 window/vsync/vsync_mode=0
