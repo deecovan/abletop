@@ -11,6 +11,9 @@ func _ready() -> void:
 	player_deck.shuffle()
 	$RichTextLabel.text = str(player_deck.size())
 	
+	for i in range($"../BattleManager".STARTING_HAND_SIZE):
+		draw_card()
+	
 func draw_card() -> void:
 	var card_drawn_name = player_deck[0]
 	player_deck.erase(card_drawn_name)

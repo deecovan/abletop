@@ -2,6 +2,8 @@ extends Node
 
 var battle_timer
 
+const STARTING_HAND_SIZE = 4
+
 
 func _on_end_turn_button_pressed() -> void:
 	opponent_turn()

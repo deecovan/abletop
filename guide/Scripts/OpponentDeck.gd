@@ -11,6 +11,9 @@ func _ready() -> void:
 	opponent_deck.shuffle()
 	$RichTextLabel.text = str(opponent_deck.size())
 	
+	for i in range($"../BattleManager".STARTING_HAND_SIZE):
+		draw_card()
+	
 func draw_card() -> void:
 	if opponent_deck.size() < 1: return
 	
