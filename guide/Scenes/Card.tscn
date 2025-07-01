@@ -85,74 +85,74 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:self_modulate")
+tracks/0/path = NodePath("CardBackImage:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Health:self_modulate")
+tracks/1/path = NodePath("CardImage:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Health:position")
+tracks/2/path = NodePath("CardImage:z_index")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(24, 48)]
+"update": 1,
+"values": [-1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Attack:position")
+tracks/3/path = NodePath("CardBackImage:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-19.49, 48)]
+"update": 1,
+"values": [1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CardBackImage:scale")
+tracks/4/path = NodePath("Attack:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(0, 0, 0, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CardImage:scale")
+tracks/5/path = NodePath("Health:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kphy1"]
@@ -175,10 +175,11 @@ libraries = {
 speed_scale = 5.0
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
-z_index = -1
+z_index = 1
 texture = ExtResource("2_3p273")
 
 [node name="CardImage" type="Sprite2D" parent="."]
+z_index = -1
 texture = ExtResource("2_h8wm0")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -189,11 +190,21 @@ light_mask = 2
 visibility_layer = 2
 shape = SubResource("RectangleShape2D_3p273")
 
+[node name="Name" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -48.0
+offset_top = 16.0
+offset_right = 48.0
+offset_bottom = 56.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Attack" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -20.0
+offset_left = -61.0
 offset_top = 48.0
-offset_right = 20.0
+offset_right = -21.0
 offset_bottom = 88.0
 text = "0"
 horizontal_alignment = 1
@@ -202,9 +213,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -20.0
+offset_left = 24.0
 offset_top = 48.0
-offset_right = 20.0
+offset_right = 64.0
 offset_bottom = 88.0
 text = "0"
 horizontal_alignment = 1

@@ -3,8 +3,26 @@ extends Node2D
 var card_scene = preload("res://Scenes/OpponentCard.tscn")
 var card_database_reference = preload("res://Scripts/CardDatabase.gd")
 var opponent_deck = [
-	"Knight", "Archer", "Mage", "Knight",
-	"Knight", "Archer", "Mage", "Knight",
+	"Wall",
+	"Wall",
+	"Water",
+	"Water",
+	"Soldier",
+	"Soldier",
+	"Soldier",
+	"Soldier",
+	"Sergant",
+	"Sergant",
+	"Knight",
+	"Tank",
+	"Pikiner",
+	"Pikiner",
+	"Pikiner",
+	"Pikiner",
+	"Ranger",
+	"Ranger",
+	"Archer",
+	"Mage",
 ]
 
 func _ready() -> void:
@@ -27,10 +45,17 @@ func draw_card() -> void:
 		
 	$RichTextLabel.text = str(opponent_deck.size())
 	var new_card = card_scene.instantiate()
-	new_card.name = "Card"
+	new_card.name = card_drawn_name + "Card"
 	new_card.position = Vector2(position.x, position.y)
+	# Init card nnodes
 	new_card.get_node("CardImage").texture = load("res://Assets/" + card_drawn_name + ".png")
+	new_card.get_node("Name").text = card_drawn_name
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
+	# Init card values
+	new_card.attack = card_database_reference.CARDS[card_drawn_name][0]
+	new_card.defence = card_database_reference.CARDS[card_drawn_name][1]
+	new_card.value = new_card.attack + sqrt(new_card.defence)
+	
 	$"../CardManager".add_child(new_card)
 	$"../OpponentHand".add_card_to_hand(new_card)

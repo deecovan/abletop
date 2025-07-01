@@ -1,12 +1,12 @@
 extends Node
 
 const STARTING_HAND_SIZE = 4
-var empty_monster_card_slots = []
+var empty_card_slots = []
 var opponent_deck
 
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
-	empty_monster_card_slots = [
+	empty_card_slots = [
 		$"../OpponentCardSlots/CardSlot", 
 		$"../OpponentCardSlots/CardSlot2",
 		$"../OpponentCardSlots/CardSlot3",
@@ -28,6 +28,8 @@ func opponent_turn() -> void:
 	# Implement turn
 	## Draw a card
 	if opponent_deck.opponent_deck.size() > 0:
+		# twice
+		opponent_deck.draw_card()
 		opponent_deck.draw_card()
 		await battle_timer()
 	
@@ -35,19 +37,38 @@ func opponent_turn() -> void:
 		$EndTurnButton.disabled = false
 		$EndTurnButton.visible = true
 		
-	if empty_monster_card_slots.size() == 0:
+	if empty_card_slots.size() == 0:
 		end_opponent_turn()
 		return
 	
+	# twice
 	await try_play_card()
+	await try_play_card()
+	# final
 	end_opponent_turn()
 	
 func  try_play_card():
-	print("try_play_card()")
+	var opponent_hand = $"../OpponentHand".opponent_hand
+	if opponent_hand.size() != 0:
+		# Find a card with highest Value
+		var random_slot = empty_card_slots[randi_range(0, empty_card_slots.size()-1)]
+		empty_card_slots.erase(random_slot)
+		var card_with_highest_value = opponent_hand[0]
+		for card in opponent_hand:
+			if card.value > card_with_highest_value.value:
+				card_with_highest_value = card
+		# Put the card to the slot
+		var tween = get_tree().create_tween()
+		tween.tween_property(card_with_highest_value, "position", random_slot.position, 
+			$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+		card_with_highest_value.get_node("AnimationPlayer").play("Flip")
+		$"../OpponentHand".remove_card_from_hand(card_with_highest_value)
+		
+	# return timeout
 	return battle_timer()
 
 func end_opponent_turn() -> void:
-	print("end_opponent_turn()")
+	pass
 	
 
 

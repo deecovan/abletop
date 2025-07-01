@@ -3,7 +3,6 @@ extends Node2D
 const CARD_WIDTH = 70
 const HAND_X_POSITION = 35
 const HAND_Y_POSITION = 90
-const DEFAULT_CARD_MOVE_SPEED = 0.2
 
 var card_scene = preload("res://Scenes/Card.tscn")
 var opponent_hand = []
@@ -15,9 +14,9 @@ func _ready() -> void:
 func add_card_to_hand(card) -> void:
 	if card not in opponent_hand:
 		opponent_hand.insert(0, card)
-		update_hand_positions(DEFAULT_CARD_MOVE_SPEED)
+		update_hand_positions($"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 	else:
-		animate_card_to_position(card, card.starting_position, DEFAULT_CARD_MOVE_SPEED)
+		animate_card_to_position(card, card.starting_position, $"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 		pass
 
 func update_hand_positions(speed) -> void:
@@ -39,5 +38,5 @@ func animate_card_to_position(card, new_position, speed) -> void:
 func remove_card_from_hand(card) -> void:
 		if card in opponent_hand:
 			opponent_hand.erase(card)
-			update_hand_positions(DEFAULT_CARD_MOVE_SPEED)
+			update_hand_positions($"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 			

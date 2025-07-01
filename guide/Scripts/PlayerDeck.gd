@@ -3,8 +3,26 @@ extends Node2D
 var card_scene = preload("res://Scenes/Card.tscn")
 var card_database_reference = preload("res://Scripts/CardDatabase.gd")
 var player_deck = [
-	"Knight", "Archer", "Mage", "Knight",
-	"Knight", "Archer", "Mage", "Knight",
+	"Wall",
+	"Wall",
+	"Water",
+	"Water",
+	"Soldier",
+	"Soldier",
+	"Soldier",
+	"Soldier",
+	"Sergant",
+	"Sergant",
+	"Knight",
+	"Tank",
+	"Pikiner",
+	"Pikiner",
+	"Pikiner",
+	"Pikiner",
+	"Ranger",
+	"Ranger",
+	"Archer",
+	"Mage",
 ]
 
 func _ready() -> void:
@@ -25,9 +43,10 @@ func draw_card() -> void:
 		
 	$CardsInDeck.text = str(player_deck.size())
 	var new_card = card_scene.instantiate()
-	new_card.name = "Card"
+	new_card.name = card_drawn_name + "Card"
 	new_card.position = Vector2(position.x, position.y)
 	new_card.get_node("CardImage").texture = load("res://Assets/" + card_drawn_name + ".png")
+	new_card.get_node("Name").text = card_drawn_name
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
