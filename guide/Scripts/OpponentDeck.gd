@@ -29,7 +29,7 @@ func _ready() -> void:
 	opponent_deck.shuffle()
 	$RichTextLabel.text = str(opponent_deck.size())
 	
-	for i in range($"../BattleManager".STARTING_HAND_SIZE):
+	for i in range($"../CardManager".STARTING_HAND_SIZE):
 		draw_card()
 	
 func draw_card() -> void:

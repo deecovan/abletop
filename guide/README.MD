@@ -1,7 +1,7 @@
 # abletop/guide GitHub repo LOG
 
-## 25-7-01
-- Continue directly from Video#9
+## 25-7-01 tag v0.8.0
+- Continue Attacking directly from Video#9
 
 ## 25-7-01 tag v0.7.0
 - Continue 14:15 Opponent Draw a Card

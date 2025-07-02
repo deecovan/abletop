@@ -1,6 +1,5 @@
 extends Node
 
-const STARTING_HAND_SIZE = 4
 var empty_card_slots = []
 var opponent_deck
 
@@ -16,6 +15,10 @@ func _ready() -> void:
 		$"../OpponentCardSlots/CardSlot7",
 		$"../OpponentCardSlots/CardSlot8"
 	]
+	# Show info for 5 sec
+	$"RichTextLabel".visible = true
+	await battle_timer(5000)
+	$"RichTextLabel".visible = false
 
 func _on_end_turn_button_pressed() -> void:
 	opponent_turn()
@@ -27,9 +30,12 @@ func opponent_turn() -> void:
 	
 	# Implement turn
 	## Draw a card
-	if opponent_deck.opponent_deck.size() > 0:
+	var opponent_hand = $"../OpponentHand".opponent_hand
+	if (opponent_deck.opponent_deck.size() > 0 
+			and opponent_hand.size() < $"../CardManager".MAX_CARD_IN_HAND):
 		# twice
 		opponent_deck.draw_card()
+		await battle_timer()
 		opponent_deck.draw_card()
 		await battle_timer()
 	

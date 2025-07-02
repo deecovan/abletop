@@ -29,10 +29,15 @@ func _ready() -> void:
 	player_deck.shuffle()
 	$CardsInDeck.text = str(player_deck.size())
 	
-	for i in range($"../BattleManager".STARTING_HAND_SIZE):
+	for i in range($"../CardManager".STARTING_HAND_SIZE):
 		draw_card()
 	
 func draw_card() -> void:
+	# Break if maximum cards drawn
+	var player_hand = $"../PlayerHand".player_hand
+	if player_hand.size() == $"../CardManager".MAX_CARD_IN_HAND:
+		return
+		
 	var card_drawn_name = player_deck[0]
 	player_deck.erase(card_drawn_name)
 	
@@ -52,7 +57,14 @@ func draw_card() -> void:
 	$"../CardManager".add_child(new_card)
 	$"../PlayerHand".add_card_to_hand(new_card)
 	new_card.get_node("AnimationPlayer").play("Flip")
-
+	
+	# Message if maximum cards drawn
+	if player_hand.size() == $"../CardManager".MAX_CARD_IN_HAND:
+		$"../BattleManager/RichTextLabel".text = \
+		"Can draw maximum " + str($"../CardManager".MAX_CARD_IN_HAND) + " cards!"
+		$"../BattleManager/RichTextLabel".visible = true
+		await $"../BattleManager".battle_timer(5000)
+		$"../BattleManager/RichTextLabel".visible = false
 
 func _on_area_2d_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

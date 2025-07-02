@@ -10,6 +10,9 @@ const DEFAULT_CARD_PICK_SPEED = 0.4
 const ZOOM_NORMAL = Vector2(0.5,0.5)
 const ZOOM_IN = Vector2(0.55,0.55)
 
+const MAX_CARD_IN_HAND = 10
+const STARTING_HAND_SIZE = 4
+
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
