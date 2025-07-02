@@ -1,6 +1,9 @@
 # abletop/guide GitHub repo LOG
 
 ## 25-7-01 tag v0.8.0
+- Fix Viewport error
+- Fix 10 cards in hand
+- Update Frame images
 - Continue Attacking directly from Video#9
 
 ## 25-7-01 tag v0.7.0

@@ -1,10 +1,10 @@
 extends Node2D
 
+const MAX_FPS = 100
+
 func _ready() -> void:
-	Engine.max_fps = 0
-	Engine.physics_ticks_per_second = 0
-	RenderingServer.viewport_set_msaa_2d(Viewport, RenderingServer.VIEWPORT_MSAA_MAX)
-	RenderingServer.viewport_set_screen_space_aa(Viewport, RenderingServer.VIEWPORT_SCREEN_SPACE_AA_MAX)
+	Engine.max_fps = MAX_FPS
+	Engine.physics_ticks_per_second = MAX_FPS
 
 func _process(_delta):
 	if Input.is_action_pressed('reload'):
