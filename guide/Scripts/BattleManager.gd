@@ -2,6 +2,13 @@ extends Node
 
 var empty_card_slots = []
 var opponent_deck
+var player_cards_on_battlefield = []
+var opponent_cards_on_battlefield = []
+var player_cards_in_graveyard = []
+var opponent_cards_in_graveyard = []
+
+const PLAYER = "Player"
+const OPPONENT = "Opponent"
 
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
@@ -76,6 +83,34 @@ func  try_play_card():
 func end_opponent_turn() -> void:
 	pass
 	
+func destroy_card(card) -> void:
+	var new_pos
+	var new_rot
+	var hide_cards = []
+	if card in player_cards_on_battlefield:
+		hide_cards = player_cards_in_graveyard
+		player_cards_in_graveyard.append(card)
+		player_cards_on_battlefield.erase(card)
+		new_pos = $"../PlayerDiscard".position
+		new_rot = $"../PlayerDiscard".rotation
+	elif card in opponent_cards_on_battlefield:
+		hide_cards = opponent_cards_in_graveyard
+		opponent_cards_in_graveyard.append(card)
+		opponent_cards_on_battlefield.erase(card)
+		new_pos = $"../OpponentDiscard".position
+		new_rot = $"../OpponentDiscard".rotation
+	else: return
+	
+	card.card_slot_card_is_in.card_in_slot = false
+	card.card_slot_card_is_in = null
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", new_pos, $"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+	tween.tween_property(card, "rotation", new_rot, $"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+	
+	for hide_card in hide_cards:
+		if card != hide_card:
+			hide_card.visible = false
 
 
 func battle_timer(delay = 500.0 * randf()):

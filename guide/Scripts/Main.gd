@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_FPS = 100
+const MAX_FPS = 60
 
 func _ready() -> void:
 	Engine.max_fps = MAX_FPS

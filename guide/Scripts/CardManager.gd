@@ -30,6 +30,13 @@ func _process(_delta: float) -> void:
 			lerp(card_being_dragged.position.x, clamp(mouse_pos.x, 0, screen_size.x), DEFAULT_CARD_PICK_SPEED),
 			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
+func card_clicked(card) -> void:
+	if card.card_slot_card_is_in:
+		## @Continue Video#9 1:39
+		$"../BattleManager".destroy_card(card)
+	else:
+		start_drag(card)
+
 func start_drag(card) -> void:
 	card_being_dragged = card
 	card.starting_position = card.position
@@ -44,8 +51,9 @@ func finish_drag() -> void:
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 		card_slot_found.card_in_slot = true
+		card_being_dragged.card_slot_card_is_in = card_slot_found
+		$"../BattleManager".player_cards_on_battlefield.append(card_being_dragged)
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged)
 	card_being_dragged.z_index -= 1
