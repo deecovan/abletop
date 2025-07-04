@@ -1,12 +1,14 @@
 # abletop/guide GitHub repo LOG
 
-## 25-7-04
+## 25-7-04 Continue Finish Attack
+- ...Continue card's attacked Health from Video8
+- ...Continue Video9
+
+## 25-7-04 Fixes
 - Continue Attacking Video#9
 - Implement card_clicked destroy_card
-- ...Continue card's attacked health Video8
-- ...Continue Video9
-- ...Fix clicked z-order
-- ...Fix CardName in AnimationPlayer
+- Fix clicked z-order
+- Fix CardName in AnimationPlayer
 
 ## 25-7-02 tag v0.8.0
 - Fix Viewport error
