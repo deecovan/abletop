@@ -13,7 +13,7 @@ config_version=5
 config/name="Guide"
 run/main_scene="uid://6xevav3qkmfb"
 config/features=PackedStringArray("4.4", "Forward Plus")
-run/max_fps=30
+run/max_fps=60
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -26,7 +26,12 @@ window/size/viewport_height=688
 window/size/initial_position_type=4
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
 window/vsync/vsync_mode=0
+
+[gui]
+
+theme/default_font_antialiasing=2
 
 [input]
 
@@ -36,11 +41,6 @@ reload={
 ]
 }
 
-[physics]
-
-common/physics_ticks_per_second=30
-
 [rendering]
 
-anti_aliasing/screen_space_roughness_limiter/enabled=false
 2d/snap/snap_2d_transforms_to_pixel=true

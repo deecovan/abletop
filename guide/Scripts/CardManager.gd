@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
 func card_clicked(card) -> void:
+	print("Click! " + str(card.name))
 	if card.card_slot_card_is_in:
 		## @Continue Video#9 1:39
 		$"../BattleManager".destroy_card(card)
@@ -42,7 +43,7 @@ func start_drag(card) -> void:
 	card.starting_position = card.position
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "scale", ZOOM_IN, DEFAULT_CARD_ZOOM_SPEED)
-	card.z_index += 1
+	card.z_index = 1
 	
 func finish_drag() -> void:
 	var tween = get_tree().create_tween()
@@ -56,7 +57,7 @@ func finish_drag() -> void:
 		$"../BattleManager".player_cards_on_battlefield.append(card_being_dragged)
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged)
-	card_being_dragged.z_index -= 1
+	card_being_dragged.z_index = 3
 	card_being_dragged = null
 	
 func connect_card_signals(card) -> void:
@@ -75,11 +76,11 @@ func on_hovered_over_card(card) -> void:
 func on_hovered_off_card(card) -> void:
 	if !card_being_dragged:
 		highlight_card(card, false)
+		is_hovering_on_card = false
 		var new_card_hovered = raycast_check_for_card()
 		if new_card_hovered:
+			is_hovering_on_card = true
 			highlight_card(new_card_hovered, true)
-		else:
-			is_hovering_on_card = false
 	
 func highlight_card(card, hovered) -> void:
 	if hovered:
@@ -116,13 +117,11 @@ func raycast_check_for_card() -> Node2D:
 func get_card_with_highest_z_index(cards) -> Node2D:
 	var highest_z_card = cards[0].collider.get_parent()
 	var highest_z_index = highest_z_card.z_index
-	
 	for i in range(1, cards.size()):
 		var current_card = cards[i].collider.get_parent()
 		if current_card.z_index > highest_z_index:
 			highest_z_index = current_card.z_index
 			highest_z_card = current_card
-			
 	return highest_z_card
 	
 	
