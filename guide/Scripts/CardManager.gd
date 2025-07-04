@@ -31,7 +31,7 @@ func _process(_delta: float) -> void:
 			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
 func card_clicked(card) -> void:
-	print("Click! " + str(card.name))
+	printt("card_clicked", str(card.name))
 	if card.card_slot_card_is_in:
 		## @Continue Video#9 1:39
 		$"../BattleManager".destroy_card(card)
@@ -43,7 +43,7 @@ func start_drag(card) -> void:
 	card.starting_position = card.position
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "scale", ZOOM_IN, DEFAULT_CARD_ZOOM_SPEED)
-	card.z_index = 1
+	card.z_index = 4
 	
 func finish_drag() -> void:
 	var tween = get_tree().create_tween()

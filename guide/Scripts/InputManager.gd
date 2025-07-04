@@ -21,17 +21,21 @@ func _input(event) -> void:
 		else:
 			emit_signal("left_mouse_button_released")
 			
-func raycast_at_cursor() -> void:
+func raycast_at_cursor () -> void:
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
 	parameters.collide_with_areas = true;
 	var result = space_state.intersect_point(parameters)
+	printt("raycast_at_cursor result[0].collider.collision_mask", result[0].collider.collision_mask)
 	if result.size() > 0:
-		var result_collision_mask = result[0].collider.collision_mask
-		if result_collision_mask == COLLISION_MASK_CARD:
-			var card_found = result[0].collider.get_parent()
-			if card_found:
-				card_manager_reference.card_clicked(card_found)
-		elif result_collision_mask == COLLISION_MASK_DECK:
-			deck_reference.draw_card()
+		for collision_found in result:
+			var result_collision_mask = collision_found.collider.collision_mask
+			if result_collision_mask == COLLISION_MASK_CARD:
+				var card_found = collision_found.collider.get_parent()
+				if card_found:
+					card_manager_reference.card_clicked(card_found)
+			elif result_collision_mask == COLLISION_MASK_DECK:
+				deck_reference.draw_card()
+			else:
+				printt("!!!for collision_found in result: result_collision_mask:", result_collision_mask)

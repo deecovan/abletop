@@ -10,6 +10,7 @@ var opponent_cards_in_graveyard = []
 const PLAYER = "Player"
 const OPPONENT = "Opponent"
 
+
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
 	empty_card_slots = [
@@ -27,14 +28,15 @@ func _ready() -> void:
 	await battle_timer(5000)
 	$"RichTextLabel".visible = false
 
+
 func _on_end_turn_button_pressed() -> void:
 	opponent_turn()
+
 
 func opponent_turn() -> void:
 	$EndTurnButton.disabled = true
 	$EndTurnButton.visible = false
 	await battle_timer()
-	
 	# Implement turn
 	## Draw a card
 	var opponent_hand = $"../OpponentHand".opponent_hand
@@ -53,12 +55,12 @@ func opponent_turn() -> void:
 	if empty_card_slots.size() == 0:
 		end_opponent_turn()
 		return
-	
 	# twice
 	await try_play_card()
 	await try_play_card()
 	# final
 	end_opponent_turn()
+	
 	
 func  try_play_card():
 	var opponent_hand = $"../OpponentHand".opponent_hand
@@ -80,10 +82,13 @@ func  try_play_card():
 	# return timeout
 	return battle_timer()
 
+
 func end_opponent_turn() -> void:
 	pass
 	
-func destroy_card(card) -> void:
+	
+func destroy_card(card: Node2D) -> void:
+	printt("destroy_card", str(card.name))
 	var new_pos
 	var new_rot
 	var hide_cards = []
@@ -103,10 +108,16 @@ func destroy_card(card) -> void:
 	
 	card.card_slot_card_is_in.card_in_slot = false
 	card.card_slot_card_is_in = null
+	card.get_node("Area2D/CollisionShape2D").disabled = true
+	card.z_index = 5
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(card, "position", new_pos, $"../CardManager".DEFAULT_CARD_MOVE_SPEED)
-	tween.tween_property(card, "rotation", new_rot, $"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+	tween.tween_property(card, "position", new_pos, \
+		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+	tween.tween_property(card, "rotation", new_rot, \
+		$"../CardManager".DEFAULT_CARD_ZOOM_SPEED)
+	tween.tween_property(card, "scale", $"../CardManager".ZOOM_NORMAL,\
+		$"../CardManager".DEFAULT_CARD_ZOOM_SPEED)
 	
 	for hide_card in hide_cards:
 		if card != hide_card:

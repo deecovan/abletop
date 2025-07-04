@@ -33,41 +33,49 @@ default_color = Color(0.479183, 0.479183, 0.479183, 1)
 [node name="CardSlots" type="Node2D" parent="."]
 
 [node name="CardSlot" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(520, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot2" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(600, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot3" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(680, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot4" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(760, 496)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot5" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(520, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot6" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(600, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot7" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(680, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
 
 [node name="CardSlot8" parent="CardSlots" instance=ExtResource("3_50glp")]
+z_index = -1
 position = Vector2(760, 400)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_vy5pj")
@@ -75,34 +83,42 @@ script = ExtResource("4_vy5pj")
 [node name="OpponentCardSlots" type="Node2D" parent="."]
 
 [node name="CardSlot" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(520, 288)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot2" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(600, 288)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot3" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(680, 288)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot4" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(760, 288)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot5" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(520, 192)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot6" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(600, 192)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot7" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(680, 192)
 scale = Vector2(0.5, 0.5)
 
 [node name="CardSlot8" parent="OpponentCardSlots" instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(760, 192)
 scale = Vector2(0.5, 0.5)
 
@@ -190,11 +206,14 @@ offset_bottom = 496.0
 size_flags_horizontal = 4
 theme = ExtResource("3_1p5hy")
 text = "Press F5 to restart
+Alt-Enter toggle fullscreen
 Click on the deck to draw a card
-Drag a card to play it"
+Drag a card to play it
+Click a card to attack"
 vertical_alignment = 1
 
 [node name="PlayerDiscard" parent="." instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(900, 496)
 rotation = 0.0872665
 scale = Vector2(0.5, 0.5)
@@ -207,6 +226,7 @@ offset_bottom = 514.0
 text = "20"
 
 [node name="OpponentDiscard" parent="." instance=ExtResource("5_frkhe")]
+z_index = -1
 position = Vector2(900, 192)
 rotation = 0.0872665
 scale = Vector2(0.5, 0.5)
