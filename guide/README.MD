@@ -1,8 +1,9 @@
 # abletop/guide GitHub repo LOG
 
 ## 25-7-04 Continue Finish Attack
-- ...Continue card's attacked Health from Video8
-- ...Continue Video9
+- ...Continue Opponent attack Video9 
+	- Add Play-a-card Position for Walls and Rangers
+- ...Continue Player Attack Video10
 
 ## 25-7-04 Fixes
 - Continue Attacking Video#9
