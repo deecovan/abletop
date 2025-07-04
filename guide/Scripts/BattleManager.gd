@@ -1,5 +1,6 @@
 extends Node
 
+var card_slots = []
 var empty_card_slots = []
 var opponent_deck
 var player_cards_on_battlefield = []
@@ -13,15 +14,19 @@ const OPPONENT = "Opponent"
 
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
-	empty_card_slots = [
-		$"../OpponentCardSlots/CardSlot", 
-		$"../OpponentCardSlots/CardSlot2",
+	card_slots = [
+		# Line 1 for range 2..inf
 		$"../OpponentCardSlots/CardSlot3",
+		$"../OpponentCardSlots/CardSlot2",
 		$"../OpponentCardSlots/CardSlot4",
+		$"../OpponentCardSlots/CardSlot",
 		$"../OpponentCardSlots/CardSlot5",
-		$"../OpponentCardSlots/CardSlot6",
+		# Line 2 for range = 0..1
+		$"../OpponentCardSlots/CardSlot8",
 		$"../OpponentCardSlots/CardSlot7",
-		$"../OpponentCardSlots/CardSlot8"
+		$"../OpponentCardSlots/CardSlot9",
+		$"../OpponentCardSlots/CardSlot6",
+		$"../OpponentCardSlots/CardSlot10",
 	]
 	# Show info for 5 sec
 	$"RichTextLabel".visible = true
@@ -36,51 +41,92 @@ func _on_end_turn_button_pressed() -> void:
 func opponent_turn() -> void:
 	$EndTurnButton.disabled = true
 	$EndTurnButton.visible = false
-	await battle_timer()
-	# Implement turn
 	## Draw a card
 	var opponent_hand = $"../OpponentHand".opponent_hand
 	if (opponent_deck.opponent_deck.size() > 0 
 			and opponent_hand.size() < $"../CardManager".MAX_CARD_IN_HAND):
-		# twice
 		opponent_deck.draw_card()
-		await battle_timer()
-		opponent_deck.draw_card()
-		await battle_timer()
-	
 	if opponent_deck.opponent_deck.size() > 0:
 		$EndTurnButton.disabled = false
 		$EndTurnButton.visible = true
-		
-	if empty_card_slots.size() == 0:
-		end_opponent_turn()
-		return
-	# twice
-	await try_play_card()
-	await try_play_card()
+	# emulate thinking
+	await battle_timer()
+	# play
+	try_play_card()
 	# final
 	end_opponent_turn()
 	
 	
 func  try_play_card():
+	#print("try_play_card():")
 	var opponent_hand = $"../OpponentHand".opponent_hand
 	if opponent_hand.size() != 0:
-		# Find a card with highest Value
-		var random_slot = empty_card_slots[randi_range(0, empty_card_slots.size()-1)]
-		empty_card_slots.erase(random_slot)
-		var card_with_highest_value = opponent_hand[0]
-		for card in opponent_hand:
-			if card.value > card_with_highest_value.value:
-				card_with_highest_value = card
-		# Put the card to the slot
-		var tween = get_tree().create_tween()
-		tween.tween_property(card_with_highest_value, "position", random_slot.position, 
-			$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
-		card_with_highest_value.get_node("AnimationPlayer").play("Flip")
-		$"../OpponentHand".remove_card_from_hand(card_with_highest_value)
+		## Dont do this
+		# var slot_number = randi_range(0, empty_card_slots.size()-1)
+		## Recalculate values in slots
+		# iterate hand cards and recalculate weights with slots
+		# 1. walls and waters (range 0) heve values only in slots 0..3
+		# 2. close-range cards have less values in slots 4..7, but more in 0..3
+		# 3. ranged cards have less in 0..5 and more 5..10
+		## Initial values
+		var card_with_max_value = opponent_hand[0]
+		var card_calc_max_value = opponent_hand[0].value
+		var use_slot = null
+
+		## Recalculate values in slots for Close-Range cards
+		for slot_number in range(5,10): # close-range
+			# check if slot is empty
+			if not card_slots[slot_number].card_slot_card_is_in:
+				var card_in_slot_value = 0.0		## Iterate cards in hand
+				for card in opponent_hand:
+					if card.ranged < 1:
+						## Walls
+						card_in_slot_value = card.value * 2.0
+					elif card.ranged == 1:
+						## Mellee
+						card_in_slot_value = card.value * 2.0
+					elif card.ranged > 1:
+						## Ranged
+						card_in_slot_value = (card.value) / 2.0 + 1
+						## Find maximum
+					if card_in_slot_value > card_calc_max_value:
+						use_slot = card_slots[slot_number]
+						card_calc_max_value = card_in_slot_value
+						card_with_max_value = card
+				#printt("range(5,10)", use_slot, card_with_max_value, card_calc_max_value)
 		
-	# return timeout
-	return battle_timer()
+		## Recalculate values in slots for Ranged cards
+		for slot_number in range(0,5): # ranged
+			# check if slot is empty
+			if not card_slots[slot_number].card_slot_card_is_in:
+				var card_in_slot_value = 0.0
+				## Iterate cards in hand
+				for card in opponent_hand:
+					if card.ranged > 1:
+						## Ranged
+						card_in_slot_value = card.value * 2
+					elif card.ranged == 1:
+						## Mellee
+						card_in_slot_value = card.value
+					elif card.ranged < 1:
+						## Walls
+						card_in_slot_value = 0
+						## Find maximum
+					if card_in_slot_value > card_calc_max_value:
+						use_slot = card_slots[slot_number]
+						card_calc_max_value = card_in_slot_value
+						card_with_max_value = card
+				#printt("range(0,5)", use_slot, card_with_max_value, card_calc_max_value)
+				
+		## Play the card if the slot is used
+		if use_slot:
+			use_slot.card_slot_card_is_in = card_with_max_value
+			# Put the card to the slot
+			var tween = get_tree().create_tween()
+			tween.tween_property(card_with_max_value, "position", use_slot.position, 
+				$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+			card_with_max_value.get_node("AnimationPlayer").play("Flip")
+			$"../OpponentHand".remove_card_from_hand(card_with_max_value)
 
 
 func end_opponent_turn() -> void:
@@ -88,7 +134,7 @@ func end_opponent_turn() -> void:
 	
 	
 func destroy_card(card: Node2D) -> void:
-	printt("destroy_card", str(card.name))
+	#printt("destroy_card", str(card.name))
 	var new_pos
 	var new_rot
 	var hide_cards = []
@@ -124,7 +170,7 @@ func destroy_card(card: Node2D) -> void:
 			hide_card.visible = false
 
 
-func battle_timer(delay = 500.0 * randf()):
+func battle_timer(delay = 200.0 + 200.0 * randf()):
 	$BattleTimer.wait_time = delay / 1000
 	$BattleTimer.start()
 	return $BattleTimer.timeout

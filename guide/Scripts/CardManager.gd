@@ -31,7 +31,7 @@ func _process(_delta: float) -> void:
 			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
 func card_clicked(card) -> void:
-	printt("card_clicked", str(card.name))
+	#printt("card_clicked", str(card.name))
 	if card.card_slot_card_is_in:
 		## @Continue Video#9 1:39
 		$"../BattleManager".destroy_card(card)

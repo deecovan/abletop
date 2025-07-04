@@ -7,10 +7,10 @@ var player_deck = [
 	"Wall",
 	"Water",
 	"Water",
-	"Soldier",
-	"Soldier",
-	"Soldier",
-	"Soldier",
+	"Peasant",
+	"Peasant",
+	"Peasant",
+	"Peasant",
 	"Sergant",
 	"Sergant",
 	"Knight",
@@ -28,7 +28,6 @@ var player_deck = [
 func _ready() -> void:
 	player_deck.shuffle()
 	$CardsInDeck.text = str(player_deck.size())
-	
 	for i in range($"../CardManager".STARTING_HAND_SIZE):
 		draw_card()
 	
@@ -49,13 +48,13 @@ func draw_card() -> void:
 	$CardsInDeck.text = str(player_deck.size())
 	var new_card = card_scene.instantiate()
 	new_card.position = Vector2(position.x, position.y)
-	new_card.get_node("CardImage").texture = load("res://Assets/" + card_drawn_name + ".png")
+	new_card.get_node("CardImage").texture = load("res://Assets/" + str(card_drawn_name) + ".png")
 	new_card.get_node("Name").text = card_drawn_name
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name + "_" + str(new_card.get_parent().get_index())
-	printt("new_card.name",new_card.name)
+	#printt("new_card.name",new_card.name)
 	$"../PlayerHand".add_card_to_hand(new_card)
 	new_card.get_node("AnimationPlayer").play("Flip")
 	

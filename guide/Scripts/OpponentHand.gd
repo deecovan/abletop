@@ -1,7 +1,7 @@
 extends Node2D
 
 const CARD_WIDTH = 70
-const HAND_X_POSITION = -5
+const HAND_X_POSITION = -45
 const HAND_Y_POSITION = 90
 
 var card_scene = preload("res://Scenes/Card.tscn")

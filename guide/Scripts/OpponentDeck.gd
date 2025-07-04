@@ -7,10 +7,10 @@ var opponent_deck = [
 	"Wall",
 	"Water",
 	"Water",
-	"Soldier",
-	"Soldier",
-	"Soldier",
-	"Soldier",
+	"Peasant",
+	"Peasant",
+	"Peasant",
+	"Peasant",
 	"Sergant",
 	"Sergant",
 	"Knight",
@@ -28,7 +28,6 @@ var opponent_deck = [
 func _ready() -> void:
 	opponent_deck.shuffle()
 	$RichTextLabel.text = str(opponent_deck.size())
-	
 	for i in range($"../CardManager".STARTING_HAND_SIZE):
 		draw_card()
 	
@@ -54,8 +53,9 @@ func draw_card() -> void:
 	# Init card values
 	new_card.attack = card_database_reference.CARDS[card_drawn_name][0]
 	new_card.defence = card_database_reference.CARDS[card_drawn_name][1]
-	new_card.value = new_card.attack + sqrt(new_card.defence)
+	new_card.ranged = card_database_reference.CARDS[card_drawn_name][2]
+	new_card.value = card_database_reference.CARDS[card_drawn_name][3]
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name + "_" + str(new_card.get_parent().get_index())
-	printt("new_card.name",new_card.name)
+	#printt("new_card.name",new_card.name)
 	$"../OpponentHand".add_card_to_hand(new_card)
