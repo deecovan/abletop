@@ -26,6 +26,8 @@ var player_deck = [
 ]
 
 func _ready() -> void:
+	## Double deck
+	player_deck += player_deck
 	player_deck.shuffle()
 	$CardsInDeck.text = str(player_deck.size())
 	for i in range($"../CardManager".STARTING_HAND_SIZE):

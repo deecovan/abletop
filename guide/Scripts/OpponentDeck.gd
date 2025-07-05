@@ -26,6 +26,8 @@ var opponent_deck = [
 ]
 
 func _ready() -> void:
+	## Double deck
+	opponent_deck += opponent_deck
 	opponent_deck.shuffle()
 	$RichTextLabel.text = str(opponent_deck.size())
 	for i in range($"../CardManager".STARTING_HAND_SIZE):

@@ -117,7 +117,7 @@ func  try_play_card():
 						card_in_slot_value = card.value * 1.5
 					elif card.ranged > 1:
 						## Pikas
-						card_in_slot_value = card.value * 1
+						card_in_slot_value = card.value * 1.1
 					elif card.ranged > 2:
 						## Ranged
 						card_in_slot_value = (card.value) / 3.0

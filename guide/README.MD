@@ -4,7 +4,8 @@
 - Tag v0.9.0
 - Add testting messaged to opponent's DRAW and PLAY
 - Fix draw and cant play for cards with range 2
-- Test again
+- Double deck 
+- Test OK
 
 ## 25-7-04
 - Test Exported
