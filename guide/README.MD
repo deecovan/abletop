@@ -1,7 +1,12 @@
 # abletop/guide GitHub repo LOG
 
-## 25-7-04
+## 25-7-05
 - Tag v0.9.0
+- Add testting messaged to opponent's DRAW and PLAY
+- Fix draw and cant play for cards with range 2
+- Test again
+
+## 25-7-04
 - Test Exported
 - ...Continue Opponent attack Video9 
 - ...Continue Player Attack Video10

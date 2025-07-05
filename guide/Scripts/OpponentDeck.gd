@@ -57,5 +57,8 @@ func draw_card() -> void:
 	new_card.value = card_database_reference.CARDS[card_drawn_name][3]
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name + "_" + str(new_card.get_parent().get_index())
-	#printt("new_card.name",new_card.name)
+	print("DRAW" 
+		+ " card: " + str(new_card.name) 
+		+ " range: " + str(new_card.ranged) 
+		+ " value: " + str(new_card.value) )
 	$"../OpponentHand".add_card_to_hand(new_card)

@@ -14,13 +14,14 @@ const OPPONENT = "Opponent"
 
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
-	card_slots = [
+	card_slots = [ 
+		## Ordered by Godot's Sorting Idiotism
 		# Line 1 for range 2..inf
-		$"../OpponentCardSlots/CardSlot3",
-		$"../OpponentCardSlots/CardSlot2",
-		$"../OpponentCardSlots/CardSlot4",
-		$"../OpponentCardSlots/CardSlot",
 		$"../OpponentCardSlots/CardSlot5",
+		$"../OpponentCardSlots/CardSlot",
+		$"../OpponentCardSlots/CardSlot4",
+		$"../OpponentCardSlots/CardSlot2",
+		$"../OpponentCardSlots/CardSlot3",
 		# Line 2 for range = 0..1
 		$"../OpponentCardSlots/CardSlot8",
 		$"../OpponentCardSlots/CardSlot7",
@@ -45,11 +46,13 @@ func opponent_turn() -> void:
 	var opponent_hand = $"../OpponentHand".opponent_hand
 	if (opponent_deck.opponent_deck.size() > 0 
 			and opponent_hand.size() < $"../CardManager".MAX_CARD_IN_HAND):
+		# Think
+		battle_timer()
 		opponent_deck.draw_card()
 	if opponent_deck.opponent_deck.size() > 0:
 		$EndTurnButton.disabled = false
 		$EndTurnButton.visible = true
-	# emulate thinking
+	# Think
 	await battle_timer()
 	# play
 	try_play_card()
@@ -68,66 +71,84 @@ func  try_play_card():
 		# 1. walls and waters (range 0) heve values only in slots 0..3
 		# 2. close-range cards have less values in slots 4..7, but more in 0..3
 		# 3. ranged cards have less in 0..5 and more 5..10
-		## Initial values
-		var card_with_max_value = opponent_hand[0]
-		var card_calc_max_value = opponent_hand[0].value
-		var use_slot = null
-
-		## Recalculate values in slots for Close-Range cards
-		for slot_number in range(5,10): # close-range
-			# check if slot is empty
-			if not card_slots[slot_number].card_slot_card_is_in:
-				var card_in_slot_value = 0.0		## Iterate cards in hand
-				for card in opponent_hand:
-					if card.ranged < 1:
-						## Walls
-						card_in_slot_value = card.value * 2.0
-					elif card.ranged == 1:
-						## Mellee
-						card_in_slot_value = card.value * 2.0
-					elif card.ranged > 1:
-						## Ranged
-						card_in_slot_value = (card.value) / 2.0 + 1
-						## Find maximum
-					if card_in_slot_value > card_calc_max_value:
-						use_slot = card_slots[slot_number]
-						card_calc_max_value = card_in_slot_value
-						card_with_max_value = card
-				#printt("range(5,10)", use_slot, card_with_max_value, card_calc_max_value)
+		## Init vars
+		var last_drawn_card = opponent_hand[opponent_hand.size()-1]
+		var card_with_max_value = last_drawn_card
+		var card_calc_max_value = last_drawn_card.value
+		var play_card_to_slot = null
 		
 		## Recalculate values in slots for Ranged cards
-		for slot_number in range(0,5): # ranged
+		for slot_number in range(0,5): 
 			# check if slot is empty
 			if not card_slots[slot_number].card_slot_card_is_in:
-				var card_in_slot_value = 0.0
 				## Iterate cards in hand
 				for card in opponent_hand:
-					if card.ranged > 1:
+					var card_in_slot_value = card.value
+					if card.ranged > 2:
 						## Ranged
 						card_in_slot_value = card.value * 2
+					elif card.ranged > 1:
+						## Pikas
+						card_in_slot_value = card.value * 1.5
 					elif card.ranged == 1:
 						## Mellee
-						card_in_slot_value = card.value
-					elif card.ranged < 1:
+						card_in_slot_value = card.value * 0.5
+					elif card.ranged == 0:
 						## Walls
 						card_in_slot_value = 0
 						## Find maximum
-					if card_in_slot_value > card_calc_max_value:
-						use_slot = card_slots[slot_number]
+					if card_in_slot_value >= card_calc_max_value:
+						play_card_to_slot = card_slots[slot_number]
 						card_calc_max_value = card_in_slot_value
 						card_with_max_value = card
-				#printt("range(0,5)", use_slot, card_with_max_value, card_calc_max_value)
+
+		## Recalculate values in slots for Close-Range cards
+		for slot_number in range(5,10): 
+			# check if slot is empty
+			if not card_slots[slot_number].card_slot_card_is_in:
+				## Iterate cards in hand
+				for card in opponent_hand:
+					var card_in_slot_value = card.value
+					if card.ranged == 0:
+						## Walls
+						card_in_slot_value = card.value * 2.0
+					elif card.ranged == 1:
+						## Mellee
+						card_in_slot_value = card.value * 1.5
+					elif card.ranged > 1:
+						## Pikas
+						card_in_slot_value = card.value * 1
+					elif card.ranged > 2:
+						## Ranged
+						card_in_slot_value = (card.value) / 3.0
+						## Find maximum
+					if card_in_slot_value > card_calc_max_value:
+						play_card_to_slot = card_slots[slot_number]
+						card_calc_max_value = card_in_slot_value
+						card_with_max_value = card
 				
 		## Play the card if the slot is used
-		if use_slot:
-			use_slot.card_slot_card_is_in = card_with_max_value
+		if play_card_to_slot:
+			play_card_to_slot.card_slot_card_is_in = card_with_max_value
 			# Put the card to the slot
 			var tween = get_tree().create_tween()
-			tween.tween_property(card_with_max_value, "position", use_slot.position, 
+			tween.tween_property(card_with_max_value, "position", play_card_to_slot.position, 
 				$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 			card_with_max_value.get_node("AnimationPlayer").play("Flip")
 			$"../OpponentHand".remove_card_from_hand(card_with_max_value)
-
+			print("PLAY" 
+				+ " name: " + str(card_with_max_value.name) 
+				+ " range: " + str(card_with_max_value.ranged) 
+				+ " value: " + str(card_calc_max_value)
+				+ " slot: " + str(play_card_to_slot.name)  )
+		## Can NOT play card:
+		else:
+			print("CANT play: cards in the hand:")
+			for card in opponent_hand:
+				print("CARD" 
+					+ " name: " + str(card.name) 
+					+ " range: " + str(card.ranged) 
+					+ " value: " + str(card.value) )
 
 func end_opponent_turn() -> void:
 	pass
