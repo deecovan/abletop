@@ -1,16 +1,12 @@
 # abletop/guide GitHub repo LOG
 
 ## 25-7-05
+- Start Oppo's Attack
 - Tag v0.9.0
 - Add testting messaged to opponent's DRAW and PLAY
 - Fix draw and cant play for cards with range 2
 - Double deck 
 - Test OK
-
-## 25-7-04
-- Test Exported
-- ...Continue Opponent attack Video9 
-- ...Continue Player Attack Video10
 
 ## 25-7-04 Continue Finish Attack
 - Add Play-a-card Position for Walls and Rangers
