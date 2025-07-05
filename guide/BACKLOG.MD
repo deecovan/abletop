@@ -14,11 +14,13 @@
     - Information/Log area
 - Game sequence
   - Initial draw 4 cards
+  - 2 coins for each player
+  - Each turn adds 1 more coin (Cards with cost 5 played on turn 2-5)
   ...
   - Turn sequence:
-      0. Turn starts with 2AP.
-      1. Player can draw a card or play a card from the hand. -1AP.
-         - Drawn card are tapped - can not attack, can contr-attack. 
+      0. Turn starts with \[2\]Coins.
+      1. Player can draw \[1\]C or play a card \[value\]C from the hand.
+         - Drawn card are tapped: can not attack, can block/contr-attack. 
       2. Repeat 1.
       3. Attack with the cards not tapped.
       4. End turn.
