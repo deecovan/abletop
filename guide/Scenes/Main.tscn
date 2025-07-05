@@ -26,8 +26,8 @@ script = ExtResource("1_rgh2o")
 script = ExtResource("2_pbw6q")
 
 [node name="Center" type="Line2D" parent="CardManager"]
-position = Vector2(640, 344)
-points = PackedVector2Array(0, -8, 0, -0.00945854, 0, 8, 0, 0, 8, 0, -8, 0)
+position = Vector2(600, 344)
+points = PackedVector2Array(0, -8, 0, 0, 0, 8, -8, 0, 8, 0, -8, 0)
 width = 1.0
 default_color = Color(0.479183, 0.479183, 0.479183, 1)
 

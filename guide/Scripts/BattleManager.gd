@@ -153,6 +153,21 @@ func  try_play_card():
 func end_opponent_turn() -> void:
 	pass
 	
+func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
+	att_card.z_index = 5
+	var new_pos = Vector2(def_card.position.x, def_card.position.y \
+		+ $"../CardManager".DEFAULT_CARD_Y_OFFSET)
+		
+	var tween = get_tree().create_tween()
+	tween.tween_property(att_card, "position", new_pos, \
+		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+	await battle_timer()
+	tween.tween_property(att_card, "position", att_card.card_slot_card_is_in, \
+		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
+		
+	## Deal damage to each other
+	# Video#9 17:14
+	
 	
 func destroy_card(card: Node2D) -> void:
 	#printt("destroy_card", str(card.name))

@@ -1,6 +1,8 @@
 # abletop/guide GitHub repo LOG
 
 ## 25-7-05 Tag v0.9.0
+- Func attack Continue Video#9 17:14
+
 - Start Oppo's Attack
 - Tag v0.9.0
 - Add testting messaged to opponent's DRAW and PLAY
