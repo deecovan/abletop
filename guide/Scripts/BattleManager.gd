@@ -189,7 +189,8 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	
 	
 func destroy_card(card: Node2D, _attacker) -> void:
-	#printt("destroy_card", str(card.name))
+	printt("destroy_card", str(card.name))
+	printt("in slot", str(card.card_slot_card_is_in))
 	var new_pos
 	var new_rot
 	var hide_cards = []

@@ -1,5 +1,8 @@
 # abletop/guide GitHub repo LOG
 
+## 25-7-11 @TODO
+- Fix Opponent card spawns in slot -null- 
+                
 ## 25-7-11
 - Implement func attack 
   - Continue Video#9 17:14
