@@ -3,6 +3,8 @@
 ## 25-7-11
 - Implement func attack 
   - Continue Video#9 17:14
+- Player can attack! 
+  - Now fix all bugs
 
 ## 25-7-05 Tag v0.9.0
 - Start Oppo's Attack

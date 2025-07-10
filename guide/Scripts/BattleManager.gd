@@ -136,6 +136,7 @@ func  try_play_card():
 				$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 			card_with_max_value.get_node("AnimationPlayer").play("Flip")
 			$"../OpponentHand".remove_card_from_hand(card_with_max_value)
+			opponent_cards_on_battlefield.append(card_with_max_value)
 			print("PLAY" 
 				+ " name: " + str(card_with_max_value.name) 
 				+ " range: " + str(card_with_max_value.ranged) 
@@ -169,12 +170,12 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	## Deal damage to each other
 	## @TODO use on-update trigger instead
 	def_card.health = max(0, def_card.health - att_card.attack)
-	var def_card_healt: Node2D = def_card.get_node("Health")
+	var def_card_healt = def_card.get_node("Health")
 	if def_card_healt.text != str(def_card.health):
 		def_card_healt.text = str(def_card.health)
 		def_card_healt.modulate = Color.FIREBRICK
 	att_card.health = max(0, att_card.health - def_card.attack)
-	var att_card_healt: Node2D = att_card.get_node("Health")
+	var att_card_healt = att_card.get_node("Health")
 	if att_card_healt.text != str(att_card.health):
 		att_card_healt.text = str(att_card.health)
 		att_card_healt.modulate = Color.FIREBRICK

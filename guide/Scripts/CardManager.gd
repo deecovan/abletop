@@ -34,8 +34,11 @@ func _process(_delta: float) -> void:
 func card_clicked(card) -> void:
 	#printt("card_clicked", str(card.name))
 	if card.card_slot_card_is_in:
-		## @Continue Video#9 1:39
-		$"../BattleManager".destroy_card(card, "Player")
+		var opponent_cards_on_battlefield: Array = $"../BattleManager".opponent_cards_on_battlefield
+		var opponent_card_to_attack = opponent_cards_on_battlefield.pick_random()
+		print(opponent_cards_on_battlefield)
+		if opponent_card_to_attack:
+			$"../BattleManager".attack(card, opponent_card_to_attack, "Player")
 	else:
 		start_drag(card)
 
