@@ -54,6 +54,8 @@ func draw_card() -> void:
 	new_card.get_node("Name").text = card_drawn_name
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
+	new_card.attack = card_database_reference.CARDS[card_drawn_name][0]
+	new_card.health = card_database_reference.CARDS[card_drawn_name][1]
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name + "_" + str(new_card.get_parent().get_index())
 	#printt("new_card.name",new_card.name)

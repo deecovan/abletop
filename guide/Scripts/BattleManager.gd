@@ -154,6 +154,7 @@ func end_opponent_turn() -> void:
 	pass
 	
 func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
+	var att_card_z_index = att_card.z_index
 	att_card.z_index = 5
 	var new_pos = Vector2(def_card.position.x, def_card.position.y \
 		+ $"../CardManager".DEFAULT_CARD_Y_OFFSET)
@@ -177,6 +178,17 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	if att_card_healt.text != str(att_card.health):
 		att_card_healt.text = str(att_card.health)
 		att_card_healt.modulate = Color.FIREBRICK
+		
+	await battle_timer(1000)
+	att_card.z_index = att_card_z_index
+	
+	var card_is_destroyed = false
+	if att_card.health == 0:
+		destroy_card(att_card)
+		card_is_destroyed = true
+	if def_card.health == 0:
+		destroy_card(def_card)
+		card_is_destroyed = true
 	
 	
 func destroy_card(card: Node2D) -> void:

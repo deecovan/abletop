@@ -1,4 +1,4 @@
-const CARDS = { # Attack, Defence, Ranged, Value
+const CARDS = { # Attack, Health, Ranged, Value
 	"Mage": [4, 1, 3, 5],
 	"Tank": [2, 4, 1, 5],
 	"Knight": [2, 3, 1, 4],

@@ -3,6 +3,11 @@ extends Node2D
 signal hovered
 signal hovered_off
 
+var attack: int
+var health: int
+var ranged: int
+var value: float = 0.0
+
 var starting_position
 var card_slot_card_is_in
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 var attack: int
-var defence: int
+var health: int
 var ranged: int
 var value: float = 0.0
 
