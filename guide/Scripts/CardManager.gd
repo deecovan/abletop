@@ -35,7 +35,7 @@ func card_clicked(card) -> void:
 	#printt("card_clicked", str(card.name))
 	if card.card_slot_card_is_in:
 		## @Continue Video#9 1:39
-		$"../BattleManager".destroy_card(card)
+		$"../BattleManager".destroy_card(card, "Player")
 	else:
 		start_drag(card)
 

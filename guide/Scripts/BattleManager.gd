@@ -184,14 +184,14 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	
 	var card_is_destroyed = false
 	if att_card.health == 0:
-		destroy_card(att_card)
+		destroy_card(att_card, attacker)
 		card_is_destroyed = true
 	if def_card.health == 0:
-		destroy_card(def_card)
+		destroy_card(def_card, attacker)
 		card_is_destroyed = true
 	
 	
-func destroy_card(card: Node2D) -> void:
+func destroy_card(card: Node2D, attacker) -> void:
 	#printt("destroy_card", str(card.name))
 	var new_pos
 	var new_rot
