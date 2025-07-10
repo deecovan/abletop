@@ -1,7 +1,7 @@
 extends Node
 
-var card_slots = []
-var empty_card_slots = []
+var opponent_card_slots = []
+var empty_opponent_card_slots = []
 var opponent_deck
 var player_cards_on_battlefield = []
 var opponent_cards_on_battlefield = []
@@ -14,7 +14,7 @@ const OPPONENT = "Opponent"
 
 func _ready() -> void:
 	opponent_deck = $"../OpponentDeck"
-	card_slots = [ 
+	opponent_card_slots = [ 
 		## Ordered by Godot's Sorting Idiotism
 		# Line 1 for range 2..inf
 		$"../OpponentCardSlots/CardSlot5",
@@ -64,8 +64,6 @@ func  try_play_card():
 	#print("try_play_card():")
 	var opponent_hand = $"../OpponentHand".opponent_hand
 	if opponent_hand.size() != 0:
-		## Dont do this
-		# var slot_number = randi_range(0, empty_card_slots.size()-1)
 		## Recalculate values in slots
 		# iterate hand cards and recalculate weights with slots
 		# 1. walls and waters (range 0) heve values only in slots 0..3
@@ -80,7 +78,7 @@ func  try_play_card():
 		## Recalculate values in slots for Ranged cards
 		for slot_number in range(0,5): 
 			# check if slot is empty
-			if not card_slots[slot_number].card_slot_card_is_in:
+			if not opponent_card_slots[slot_number].card_slot_card_is_in:
 				## Iterate cards in hand
 				for card in opponent_hand:
 					var card_in_slot_value = card.value
@@ -98,14 +96,14 @@ func  try_play_card():
 						card_in_slot_value = 0
 						## Find maximum
 					if card_in_slot_value >= card_calc_max_value:
-						play_card_to_slot = card_slots[slot_number]
+						play_card_to_slot = opponent_card_slots[slot_number]
 						card_calc_max_value = card_in_slot_value
 						card_with_max_value = card
 
 		## Recalculate values in slots for Close-Range cards
 		for slot_number in range(5,10): 
 			# check if slot is empty
-			if not card_slots[slot_number].card_slot_card_is_in:
+			if not opponent_card_slots[slot_number].card_slot_card_is_in:
 				## Iterate cards in hand
 				for card in opponent_hand:
 					var card_in_slot_value = card.value
@@ -123,7 +121,7 @@ func  try_play_card():
 						card_in_slot_value = (card.value) / 3.0
 						## Find maximum
 					if card_in_slot_value > card_calc_max_value:
-						play_card_to_slot = card_slots[slot_number]
+						play_card_to_slot = opponent_card_slots[slot_number]
 						card_calc_max_value = card_in_slot_value
 						card_with_max_value = card
 				
@@ -156,7 +154,7 @@ func end_opponent_turn() -> void:
 	
 func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	var att_card_z_index = att_card.z_index
-	att_card.z_index = 5
+	att_card.z_index = 50
 	var new_pos = Vector2(def_card.position.x, def_card.position.y \
 		+ $"../CardManager".DEFAULT_CARD_Y_OFFSET)
 		
@@ -164,7 +162,8 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	tween.tween_property(att_card, "position", new_pos, \
 		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 	await battle_timer()
-	tween.tween_property(att_card, "position", att_card.card_slot_card_is_in, \
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(att_card, "position", att_card.card_slot_card_is_in.position, \
 		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 		
 	## Deal damage to each other
@@ -180,19 +179,16 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 		att_card_healt.text = str(att_card.health)
 		att_card_healt.modulate = Color.FIREBRICK
 		
-	await battle_timer(1000)
+	await battle_timer()
 	att_card.z_index = att_card_z_index
 	
-	var card_is_destroyed = false
 	if att_card.health == 0:
 		destroy_card(att_card, attacker)
-		card_is_destroyed = true
 	if def_card.health == 0:
 		destroy_card(def_card, attacker)
-		card_is_destroyed = true
 	
 	
-func destroy_card(card: Node2D, attacker) -> void:
+func destroy_card(card: Node2D, _attacker) -> void:
 	#printt("destroy_card", str(card.name))
 	var new_pos
 	var new_rot
@@ -211,9 +207,10 @@ func destroy_card(card: Node2D, attacker) -> void:
 		new_rot = $"../OpponentDiscard".rotation
 	else: return
 	
-	card.card_slot_card_is_in.card_in_slot = false
+	if card.card_slot_card_is_in:
+		card.card_slot_card_is_in.card_in_slot = false
+		card.get_node("Area2D/CollisionShape2D").disabled = true
 	card.card_slot_card_is_in = null
-	card.get_node("Area2D/CollisionShape2D").disabled = true
 	card.z_index = 5
 	
 	var tween = get_tree().create_tween()
@@ -224,6 +221,7 @@ func destroy_card(card: Node2D, attacker) -> void:
 	tween.tween_property(card, "scale", $"../CardManager".ZOOM_NORMAL,\
 		$"../CardManager".DEFAULT_CARD_ZOOM_SPEED)
 	
+	await battle_timer()
 	for hide_card in hide_cards:
 		if card != hide_card:
 			hide_card.visible = false

@@ -32,13 +32,11 @@ func _process(_delta: float) -> void:
 			lerp(card_being_dragged.position.y, clamp(mouse_pos.y, 0, screen_size.y), DEFAULT_CARD_PICK_SPEED))
 			
 func card_clicked(card) -> void:
-	#printt("card_clicked", str(card.name))
 	if card.card_slot_card_is_in:
-		var opponent_cards_on_battlefield: Array = $"../BattleManager".opponent_cards_on_battlefield
-		var opponent_card_to_attack = opponent_cards_on_battlefield.pick_random()
-		print(opponent_cards_on_battlefield)
-		if opponent_card_to_attack:
-			$"../BattleManager".attack(card, opponent_card_to_attack, "Player")
+		if $"../BattleManager".opponent_cards_on_battlefield.size() > 0:
+			$"../BattleManager".attack(card, \
+				$"../BattleManager".opponent_cards_on_battlefield.pick_random(), 
+				"Player")
 	else:
 		start_drag(card)
 
