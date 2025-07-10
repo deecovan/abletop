@@ -166,7 +166,17 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 		$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 		
 	## Deal damage to each other
-	# Video#9 17:14
+	## @TODO use on-update trigger instead
+	def_card.health = max(0, def_card.health - att_card.attack)
+	var def_card_healt: Node2D = def_card.get_node("Health")
+	if def_card_healt.text != str(def_card.health):
+		def_card_healt.text = str(def_card.health)
+		def_card_healt.modulate = Color.FIREBRICK
+	att_card.health = max(0, att_card.health - def_card.attack)
+	var att_card_healt: Node2D = att_card.get_node("Health")
+	if att_card_healt.text != str(att_card.health):
+		att_card_healt.text = str(att_card.health)
+		att_card_healt.modulate = Color.FIREBRICK
 	
 	
 func destroy_card(card: Node2D) -> void:
