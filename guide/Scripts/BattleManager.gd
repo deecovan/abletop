@@ -61,7 +61,8 @@ func opponent_turn() -> void:
 	
 	
 func  try_play_card():
-	#print("try_play_card():")
+	## @DEBUG
+	# print("try_play_card():")
 	var opponent_hand = $"../OpponentHand".opponent_hand
 	if opponent_hand.size() != 0:
 		## Recalculate values in slots
@@ -78,7 +79,7 @@ func  try_play_card():
 		## Recalculate values in slots for Ranged cards
 		for slot_number in range(0,5): 
 			# check if slot is empty
-			if not opponent_card_slots[slot_number].card_slot_card_is_in:
+			if not opponent_card_slots[slot_number].card_in_slot:
 				## Iterate cards in hand
 				for card in opponent_hand:
 					var card_in_slot_value = card.value
@@ -103,7 +104,7 @@ func  try_play_card():
 		## Recalculate values in slots for Close-Range cards
 		for slot_number in range(5,10): 
 			# check if slot is empty
-			if not opponent_card_slots[slot_number].card_slot_card_is_in:
+			if not opponent_card_slots[slot_number].card_in_slot:
 				## Iterate cards in hand
 				for card in opponent_hand:
 					var card_in_slot_value = card.value
@@ -127,14 +128,17 @@ func  try_play_card():
 				
 		## Play the card if the slot is used
 		if play_card_to_slot:
-			play_card_to_slot.card_slot_card_is_in = card_with_max_value
 			# Put the card to the slot
+			play_card_to_slot.card_in_slot = card_with_max_value
+			opponent_cards_on_battlefield.append(card_with_max_value)
+			card_with_max_value.card_slot_card_is_in = play_card_to_slot
+			# Animate
 			var tween = get_tree().create_tween()
 			tween.tween_property(card_with_max_value, "position", play_card_to_slot.position, 
 				$"../CardManager".DEFAULT_CARD_MOVE_SPEED)
 			card_with_max_value.get_node("AnimationPlayer").play("Flip")
 			$"../OpponentHand".remove_card_from_hand(card_with_max_value)
-			opponent_cards_on_battlefield.append(card_with_max_value)
+			## @DEBUG
 			print("PLAY" 
 				+ " name: " + str(card_with_max_value.name) 
 				+ " range: " + str(card_with_max_value.ranged) 
@@ -142,6 +146,7 @@ func  try_play_card():
 				+ " slot: " + str(play_card_to_slot.name)  )
 		## Can NOT play card:
 		else:
+			## @DEBUG
 			print("CANT play: cards in the hand:")
 			for card in opponent_hand:
 				print("CARD" 
@@ -183,24 +188,28 @@ func attack(att_card: Node2D, def_card: Node2D, attacker) -> void:
 	att_card.z_index = att_card_z_index
 	
 	if att_card.health == 0:
-		destroy_card(att_card, attacker)
+		destroy_card(att_card)
 	if def_card.health == 0:
-		destroy_card(def_card, attacker)
+		destroy_card(def_card)
 	
 	
-func destroy_card(card: Node2D, _attacker) -> void:
-	printt("destroy_card", str(card.name))
-	printt("in slot", str(card.card_slot_card_is_in))
+func destroy_card(card: Node2D) -> void:
+	## @DEBUG
+	printt("KILL card", str(card.name))
 	var new_pos
 	var new_rot
 	var hide_cards = []
 	if card in player_cards_on_battlefield:
+		## @DEBUG
+		printt("IN Player's", card.card_slot_card_is_in.name)
 		hide_cards = player_cards_in_graveyard
 		player_cards_in_graveyard.append(card)
 		player_cards_on_battlefield.erase(card)
 		new_pos = $"../PlayerDiscard".position
 		new_rot = $"../PlayerDiscard".rotation
 	elif card in opponent_cards_on_battlefield:
+		# @DEBUG
+		printt("In Opponent's", card.card_slot_card_is_in.name)
 		hide_cards = opponent_cards_in_graveyard
 		opponent_cards_in_graveyard.append(card)
 		opponent_cards_on_battlefield.erase(card)
@@ -210,7 +219,9 @@ func destroy_card(card: Node2D, _attacker) -> void:
 	
 	if card.card_slot_card_is_in:
 		card.card_slot_card_is_in.card_in_slot = false
-		card.get_node("Area2D/CollisionShape2D").disabled = true
+		## Disable Player's Card collision
+		if card in player_cards_on_battlefield:
+			card.get_node("Area2D/CollisionShape2D").disabled = true
 	card.card_slot_card_is_in = null
 	card.z_index = 5
 	

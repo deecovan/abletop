@@ -58,7 +58,8 @@ func draw_card() -> void:
 	new_card.health = card_database_reference.CARDS[card_drawn_name][1]
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name + "_" + str(new_card.get_parent().get_index())
-	#printt("new_card.name",new_card.name)
+	## @DEBUG
+	# printt("new_card.name",new_card.name)
 	$"../PlayerHand".add_card_to_hand(new_card)
 	new_card.get_node("AnimationPlayer").play("Flip")
 	

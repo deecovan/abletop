@@ -1,7 +1,9 @@
 # abletop/guide GitHub repo LOG
 
 ## 25-7-11 @TODO
-- Fix Opponent card spawns in slot -null- 
+- Fix Opponent card spawns in slot -null-
+  - Fix Opponent Slots linked script
+  - Fix slot.card_in_slot variables 
                 
 ## 25-7-11
 - Implement func attack 
