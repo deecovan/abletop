@@ -1,18 +1,22 @@
 # abletop/guide GitHub repo LOG
 
-## 25-7-11 @TODO
+## 25-7-11 Upgrade Player's Attack
+- ...Highlight opposite cards 
+- ...Click target opposite card Only
+  - Or DoubleClick to attacker?
+
+## 25-7-11 Fix Card Slots
 - Fix Opponent card spawns in slot -null-
   - Fix Opponent Slots linked script
   - Fix slot.card_in_slot variables 
                 
-## 25-7-11
+## 25-7-10 Implement Player's Attack
 - Implement func attack 
   - Continue Video#9 17:14
 - Player can attack! 
   - Now fix all bugs
 
 ## 25-7-05 Tag v0.9.0
-- Start Oppo's Attack
 - Tag v0.9.0
 - Add testting messaged to opponent's DRAW and PLAY
 - Fix draw and cant play for cards with range 2
